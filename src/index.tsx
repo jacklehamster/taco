@@ -710,6 +710,13 @@ export class Game {
       if (this.creatures.length > 5 && this.createCreature.length > tardigrades) {
         localStorage.setItem("tardigrades", this.creatures.length.toString());
         this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
+        if (this.creatures.length >= 12) {
+          newgrounds.unlockMedal("A dozen");
+        } else if (this.creatures.length >= 100) {
+          newgrounds.unlockMedal("100 Tardigrades");
+        } else if (this.creatures.length >= 1000) {
+          newgrounds.unlockMedal("1000 Tardigrades");
+        }
       }
     });
     const limit = 1000;
