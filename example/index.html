@@ -12,7 +12,15 @@
       <h1>Tiny Garden of Eden</h1>
       <h3>Click here to continue</h3>
     </div>
-    <div id="img" style="width: 100%; display: none">
+    <div
+      id="img"
+      style="
+        width: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      "
+    >
       <img
         title="tardigrade"
         src="tardigrades4.png"
@@ -27,7 +35,7 @@
       "click",
       () => {
         document.querySelector("#present").style.display = "none";
-        img.style.display = "";
+        img.style.display = "flex";
         document.querySelector("audio").play();
         document.addEventListener(
           "click",

@@ -334,6 +334,9 @@ export class Game {
   sandboxCheckBox?: HTMLInputElement;
   exportButton?: HTMLButtonElement;
   ui: HTMLDivElement;
+  musicCheckbox?: HTMLInputElement;
+  audio?: HTMLAudioElement;
+  audios: HTMLAudioElement[] = [];
 
   constructor() {
     document.body.style.backgroundColor = "#333333";
@@ -357,6 +360,10 @@ export class Game {
     document.body.style.overflow = "hidden";
     document.body.style.margin = "0";
     document.body.style.padding = "0";
+    this.audios = [
+      new Audio("slow.mp3"),
+      new Audio("fast.mp3"),
+    ];
 
     {
       const ui = this.container.appendChild(document.createElement("div"));
@@ -505,6 +512,9 @@ export class Game {
         fpsLabel.style.color = "snow";
       }
       {
+        buttons.appendChild(document.createElement("br"));
+      }
+      {
         const button = buttons.appendChild(document.createElement("button"));
         button.textContent = "Export";
         button.addEventListener("click", () => {
@@ -558,6 +568,26 @@ export class Game {
         label.htmlFor = "sandboxMode";
         label.style.color = "gray";
         this.sandboxCheckBox = checkbox;
+      }
+      {
+        const checkbox = buttons.appendChild(document.createElement("input"));
+        checkbox.type = "checkbox";
+        checkbox.checked = false;
+        checkbox.id = "music";
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            this.audio = this.audios[Math.floor(Math.random() * this.audios.length)];
+            this.audio?.play();
+          } else {
+            this.audio?.pause();
+          }
+          //https://www.beepbox.co/#9n41sbk0l00e0jt43a7g0vj07r1i0o4423T5v4ua3f50m92hc1ea2k02f3q8141d36HTP9Bx99sp99900h0E0T1v1u56f0qwx10p711d03A5F5B9Q0001PfaedE4b762663777T1v0ue9f12meq0y10j53d4aA4F0BaQ0500Pf5a0E4ba61b62c75T1v2ue0f0q023d08A1F4B3Q217cPe433E361a6287bT4v1uf0f0q011z6666ji8k8k3jSBKSJJAArriiiiii07JCABrzrrrrrrr00YrkqHrsrrrrjr005zrAqzrjzrrqr1jRjrqGGrrzsrsA099ijrABJJJIAzrrtirqrqjqixzsrAjrqjiqaqqysttAJqjikikrizrHtBJJAzArzrIsRCITKSS099ijrAJS____Qg99habbCAYrDzh00E0b4i8h8w00000000000000014y4i800000000000000000000000018QlD000000000000000icidUxM00000000004h4y8y8y8y800000000p24DFE-x71Atx7ihR4t97khQAuh4s4hM97ihR4t97khQAo5d7MEEwqrGqE6GCOSCGKPh-8GpFCJeKQQvmlk4Bm7nBtUdB3VuaZpM5dN_hjbUY6kRf2rbQ4R_aqf2EVMRUeALLEMaWWW-SCH0aGrU6CGXqJFIFGHKMaiFwraqrqrF_BaPunVbpCLQkut9dvZQ5dmBvI5cz9uPhUvlPhqqfzEGgLEALKYLFALTobWA2-BcLGibWq_Bjjn8j10Om95554zhgnGqcUps2pt9BQCnwzd68iCz98WzbGOaO2eEOM0
+        });
+        const label = buttons.appendChild(document.createElement("label"));
+        label.textContent = "Play Music";
+        label.htmlFor = "music";
+        label.style.color = "snow";
+        this.musicCheckbox = checkbox;
       }
       refreshCursor();
     }

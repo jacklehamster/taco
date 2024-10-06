@@ -28405,6 +28405,9 @@ class Game {
   sandboxCheckBox;
   exportButton;
   ui;
+  musicCheckbox;
+  audio;
+  audios = [];
   constructor() {
     document.body.style.backgroundColor = "#333333";
     this.container = document.body.appendChild(document.createElement("div"));
@@ -28425,6 +28428,10 @@ class Game {
     document.body.style.overflow = "hidden";
     document.body.style.margin = "0";
     document.body.style.padding = "0";
+    this.audios = [
+      new Audio("slow.mp3"),
+      new Audio("fast.mp3")
+    ];
     {
       const ui = this.container.appendChild(document.createElement("div"));
       this.ui = ui;
@@ -28558,6 +28565,9 @@ class Game {
         fpsLabel.style.color = "snow";
       }
       {
+        buttons.appendChild(document.createElement("br"));
+      }
+      {
         const button = buttons.appendChild(document.createElement("button"));
         button.textContent = "Export";
         button.addEventListener("click", () => {
@@ -28609,6 +28619,25 @@ class Game {
         label.htmlFor = "sandboxMode";
         label.style.color = "gray";
         this.sandboxCheckBox = checkbox;
+      }
+      {
+        const checkbox = buttons.appendChild(document.createElement("input"));
+        checkbox.type = "checkbox";
+        checkbox.checked = false;
+        checkbox.id = "music";
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            this.audio = this.audios[Math.floor(Math.random() * this.audios.length)];
+            this.audio?.play();
+          } else {
+            this.audio?.pause();
+          }
+        });
+        const label = buttons.appendChild(document.createElement("label"));
+        label.textContent = "Play Music";
+        label.htmlFor = "music";
+        label.style.color = "snow";
+        this.musicCheckbox = checkbox;
       }
       refreshCursor();
     }
