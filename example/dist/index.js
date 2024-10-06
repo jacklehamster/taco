@@ -28756,7 +28756,7 @@ class Game {
       displayedCreatures.push(creature);
       this.labelCount.textContent = `Tardigrades: ${displayedCreatures.length}`;
       const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
-      if (this.creatures.length > 5 && this.createCreature.length > tardigrades) {
+      if (this.creatures.length > 5 && this.creatures.length > tardigrades) {
         localStorage.setItem("tardigrades", this.creatures.length.toString());
         this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
         if (this.creatures.length >= 12) {
