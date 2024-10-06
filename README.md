@@ -1,4 +1,4 @@
-# bun-template
+# tardigrades
 
 [![npm version](https://badge.fury.io/js/@dobuki%2Ftaco.svg)](https://www.npmjs.com/package/@dobuki/taco)
 
