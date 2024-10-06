@@ -10,6 +10,10 @@ Bun template for creating projects using bunjs
 
 [https://jacklehamster.github.io/taco/example/](https://jacklehamster.github.io/taco/example/)
 
+## Run Game with 1000
+
+[https://jacklehamster.github.io/taco/example/?num=1000](https://jacklehamster.github.io/taco/example/?num=1000)
+
 ## Github Source
 
 [https://github.com/jacklehamster/taco/](https://github.com/jacklehamster/taco/)
