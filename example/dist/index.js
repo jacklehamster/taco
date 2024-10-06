@@ -28399,6 +28399,8 @@ class Game {
   labelJoyEmoji;
   labelScore;
   labelAge;
+  showSymbolsCheckbox;
+  showSymbols = true;
   constructor() {
     document.body.style.backgroundColor = "#333333";
     this.container = document.body.appendChild(document.createElement("div"));
@@ -28560,6 +28562,20 @@ class Game {
         button.addEventListener("click", () => {
           this.importGame();
         });
+      }
+      {
+        const checkbox = buttons.appendChild(document.createElement("input"));
+        checkbox.type = "checkbox";
+        checkbox.checked = true;
+        checkbox.id = "showSymbols";
+        this.showSymbolsCheckbox = checkbox;
+        checkbox.addEventListener("change", () => {
+          this.showSymbols = checkbox.checked;
+        });
+        const label = buttons.appendChild(document.createElement("label"));
+        label.textContent = "Show statuses";
+        label.htmlFor = "showSymbols";
+        label.style.color = "snow";
       }
       refreshCursor();
     }
@@ -29020,6 +29036,9 @@ class Game {
     return creature;
   }
   createSymbol({ x, y, index, rotation, size, born }) {
+    if (!this.showSymbols) {
+      return;
+    }
     const symbol = new Symbol2({
       x,
       y,
