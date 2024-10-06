@@ -8,6 +8,7 @@ const CELL_SIZE = 0.03;
 
 const urlVars = new URLSearchParams(window.location.search);
 const TOTAL_CREATURES = (Number.isNaN(urlVars.get("num")) ? 0 : parseInt(urlVars.get("num")!)) || 2;
+const EMOJIS = ["😴","🥱","😔","😐","🙂","😊","😄","😂","🤣","🤪"];
 
 // Vertex shader source code
 const vertexShaderSource = `
@@ -50,6 +51,25 @@ const MEMBER_SIZE = [1, 1, 0, 1.1, 0, .9, .8];
 let nextId = 1;
 let thrillTotal = 0;
 let love = 0;
+let totalScore = 0;
+let age = 0;
+
+export class Symbol {
+  x: number;
+  y: number;
+  rotation: number
+  index: number;
+  size: number = 1;
+  born: number = 0;
+  constructor({x,y,index,size, rotation, born}: {born: number; x: number, y: number, rotation: number, size: number, index: number}) {
+    this.x = x;
+    this.y = y;
+    this.rotation = rotation;
+    this.index = index;
+    this.size = size;
+    this.born = born;
+  }
+}
 
 export class Creature {
   direction: number = 1;
@@ -82,7 +102,8 @@ export class Creature {
     this.mov[1] -= .05;
   }
 
-  move(time: number, map: WorldMap) {
+  lastSymbol = 0;
+  move(time: number, map: WorldMap, game: Game) {
     for (let i = this.members.length - 1; i > 0; i--) {
       this.members[i].x = this.members[i - 1].x;
       this.members[i].y = this.members[i - 1].y;
@@ -122,6 +143,17 @@ export class Creature {
     if (speed > this.thrillSpeed) {
       this.thrillSpeed = speed;
       thrillTotal += speed;
+      if (time - this.lastSymbol > 500) {
+        this.lastSymbol = time;
+        game.createSymbol({
+          x: this.x,
+          y: this.y,
+          index: 1,
+          rotation: Math.random() - .5,
+          size: 1 + Math.abs(this.thrillSpeed) / 10,
+          born: time,
+        });
+      }
     }
     this.thrillSpeed *= .999999;
   }
@@ -168,10 +200,29 @@ export class Creature {
         const distance = dx * dx + dy * dy;
         if (distance < .0005) {
           this.influence -= dx;
+          const preLove = love;
           love += Math.abs(this.thrillSpeed/10);
+          if (time - this.lastSymbol > 500 && Math.round(100 * preLove / creatures.length) !== Math.round(100 * love/ creatures.length)) {
+            this.lastSymbol = time;
+            game.createSymbol({
+              x: this.x,
+              y: this.y,
+              index: 0,
+              rotation: Math.random() - .5,
+              size: 1 + Math.abs(this.thrillSpeed) / 10,
+              born: time,
+            });
+          }
+
           if (love > creatures.length && this.getSize(time) >= .9) {
             love = 0;
-            game.createCreature(this.x, this.y, time);
+            const light = Math.random() - .5, colorize = .5;
+            const spe = light + colorize * (Math.random() - .5);
+            game.createCreature(this.x, this.y, time, [
+              Math.random() < .01 ? spe : Math.random() < .5 ? this.skin[0] : randomCreature.skin[0],
+              Math.random() < .01 ? spe : Math.random() < .5 ? this.skin[1] : randomCreature.skin[1],
+              Math.random() < .01 ? spe : Math.random() < .5 ? this.skin[2] : randomCreature.skin[2],
+            ]);
           }
         }
       }
@@ -266,12 +317,16 @@ export class Game {
   texture: WebGLTexture | null = null;
   creatures: Creature[] = [
   ];
+  symbols: Symbol[] = [];
   map = new WorldMap();
   mode: string = "SELECT";
   labelCount?: HTMLLabelElement;
   progressJoy?: HTMLDivElement;
   progressHeart?: HTMLDivElement;
   labelJoyValue?: HTMLLabelElement;
+  labelJoyEmoji?: HTMLLabelElement;
+  labelScore?: HTMLLabelElement;
+  labelAge?: HTMLLabelElement;
 
   constructor() {
     document.body.style.backgroundColor = "#333333";
@@ -290,6 +345,11 @@ export class Game {
     this.container.style.height = "100vh";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
+    //  make body not selectable, not scollable, ...
+    document.body.style.userSelect = "none";
+    document.body.style.overflow = "hidden";
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
 
     {
       const ui = this.container.appendChild(document.createElement("div"));
@@ -298,6 +358,15 @@ export class Game {
       ui.style.left = "10px";
       ui.style.display = "flex";
       ui.style.flexDirection = "column";
+      ui.style.pointerEvents = "none";
+
+      {
+        const label = ui.appendChild(document.createElement("label"));
+        label.textContent = "SCORE: 0";
+        label.style.color = "snow";
+        label.style.fontWeight = "bold";
+        this.labelScore = label;  
+      }
 
       {
         const container = ui.appendChild(document.createElement("div"));
@@ -335,6 +404,7 @@ export class Game {
         label.textContent = "😊: ";
         label.style.color = "snow";
         label.style.marginRight = "8px";
+        this.labelJoyEmoji = label;
       
         const progressBar = container.appendChild(document.createElement("div"));
         progressBar.style.flexGrow = "1";
@@ -360,9 +430,15 @@ export class Game {
 
       {
         const label = ui.appendChild(document.createElement("label"));
-        label.textContent = "Tardigrades: 0";
+        label.textContent = "";
         label.style.color = "snow";
         this.labelCount = label;  
+      }
+      {
+        const label = ui.appendChild(document.createElement("label"));
+        label.textContent = "";
+        label.style.color = "snow";
+        this.labelAge = label;
       }
     }
 
@@ -437,18 +513,22 @@ export class Game {
 
   initialized = false;
   shaderProgram: WebGLProgram | null = null;
+  lastDanger = 0;
 
   refresh(payload: UpdatePayload<Game>) {
     this.creatures.forEach(creature => creature.gravity());
-    this.creatures.forEach(creature => creature.move(payload.time, this.map));
+    this.creatures.forEach(creature => creature.move(payload.time, this.map, this));
     this.creatures.forEach(creature => creature.adjustDirection());
     this.creatures.forEach(creature => creature.act(payload.time, this.map, this.creatures, this));
+
+    thrillTotal *= 1 - (.000005 * (this.creatures.length + 5));
+    totalScore += Math.round(thrillTotal / 1000 + Math.random()*Math.random());
+    age++;
 
     if (!payload.renderFrame) {
       return;
     }
-    thrillTotal *= .999;
-    if (Math.random() < .1) {
+    {
       // Update the heart label and progress bar
       const lovePercentage = (love / this.creatures.length) * 100;
       this.progressHeart!.style.width = `${lovePercentage}%`;
@@ -456,6 +536,37 @@ export class Game {
       // Update the joy label and progress bar
       this.progressJoy!.style.width = `${thrillTotal / (this.creatures.length*100) * 100}%`;
       this.labelJoyValue!.textContent = `${Math.round(thrillTotal)} / ${this.creatures.length*100}`;
+
+      if (payload.time > 5000) {
+        // Update the joy emoji with EMOJIS
+        const joyIndex = Math.min(EMOJIS.length-1,  Math.floor(EMOJIS.length * thrillTotal / (this.creatures.length*100)));
+        this.labelJoyEmoji!.textContent = `${EMOJIS[joyIndex]}: `;
+
+        //  Update joy label color
+        if (joyIndex < 1) {
+          this.progressJoy!.style.backgroundColor = Math.random() < .5 ? "red": "yellow";
+          if (payload.time > 30000 && payload.time - this.lastDanger > 10000) {
+            alert("Game Over! Your tardigrades are too sad to continue.");
+            this.motor.stopLoop?.();
+          }
+        } else if (joyIndex < 3) {
+          this.progressJoy!.style.backgroundColor = "brown";
+          this.lastDanger = payload.time;
+        } else if (joyIndex < 5) {
+          this.progressJoy!.style.backgroundColor = "orange";
+          this.lastDanger = payload.time;
+        } else if (joyIndex === 9) {
+          this.progressJoy!.style.backgroundColor = "gold";
+          this.lastDanger = payload.time;
+        } else {
+          this.progressJoy!.style.backgroundColor = "yellow";
+          this.lastDanger = payload.time;
+        }        
+      }
+
+
+      this.labelScore!.textContent = `Score: ${totalScore}`;
+      this.labelAge!.textContent = `Year: ${Math.floor(age / 1000)}`;
     }
     
 
@@ -510,10 +621,10 @@ export class Game {
 
     {
       const blockVertices = new Float32Array([
-        -1/this.zoom, -1/this.zoom - this.globalOffset[1], .2499, .4999,
-        1/this.zoom, -1/this.zoom - this.globalOffset[1], .2501, .4999,
-        1/this.zoom, 0, .2501, .5001,
-        -1/this.zoom, 0, .2499, .5001,
+        -1/this.zoom, -1/this.zoom - this.globalOffset[1], .2499 * 2 / 5, .4999,
+        1/this.zoom, -1/this.zoom - this.globalOffset[1], .2501 * 2 / 5, .4999,
+        1/this.zoom, 0, .2501 * 2 / 5, .5001,
+        -1/this.zoom, 0, .2499 * 2 / 5, .5001,
       ]);
       gl.bufferData(gl.ARRAY_BUFFER, blockVertices, gl.STATIC_DRAW);
       gl.uniform2f(positionUniform, -this.globalOffset[0], 0);
@@ -630,19 +741,19 @@ export class Game {
         let v = 0;
         vertices[v++] = rotatedVertices[0] + member.x;
         vertices[v++] = rotatedVertices[1] + member.y;
-        vertices[v++] = creature.swapX(0.0) + offset;
+        vertices[v++] = (creature.swapX(0.0) + offset) * 2 / 5;
         vertices[v++] = 1.0;
         vertices[v++] = rotatedVertices[2] + member.x;
         vertices[v++] = rotatedVertices[3] + member.y;
-        vertices[v++] = creature.swapX(0.5) + offset;
+        vertices[v++] = (creature.swapX(0.5) + offset) * 2 / 5;
         vertices[v++] = 1.0;
         vertices[v++] = rotatedVertices[4] + member.x;
         vertices[v++] = rotatedVertices[5] + member.y;
-        vertices[v++] = creature.swapX(0.5) + offset;
+        vertices[v++] = (creature.swapX(0.5) + offset) * 2 / 5;
         vertices[v++] = 0.0;
         vertices[v++] = rotatedVertices[6] + member.x;
         vertices[v++] = rotatedVertices[7] + member.y;
-        vertices[v++] = creature.swapX(0.0) + offset;
+        vertices[v++] = (creature.swapX(0.0) + offset) * 2 / 5;
         vertices[v++] = 0.0;
 
         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
@@ -651,6 +762,50 @@ export class Game {
         gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
       }
     });
+
+    gl.uniform2f(positionUniform, 0, 0);
+    gl.uniform3fv(lightUniform, [1,1,1]);
+    this.symbols.forEach(symbol => {
+      const spriteSize = CELL_SIZE * Math.min(2,symbol.size) / this.zoom;
+      const rotation = symbol.rotation;
+      const cos = Math.cos(rotation);
+      const sin = Math.sin(rotation);
+      const originalVertices = [
+        -spriteSize, -spriteSize,
+        spriteSize, -spriteSize,
+        spriteSize, spriteSize,
+        -spriteSize, spriteSize,
+      ];
+      const rotatedVertices = [];
+      for (let i = 0; i < originalVertices.length; i += 2) {
+        const x = originalVertices[i];
+        const y = originalVertices[i + 1];
+        const rotatedX = x * cos - y * sin;
+        const rotatedY = x * sin + y * cos;
+        rotatedVertices.push(rotatedX, rotatedY);
+      }
+      const age = (payload.time - symbol.born) / 3000 * .1;
+      const offset = (3 + symbol.index) / 5;
+      let v = 0;
+      vertices[v++] = rotatedVertices[0] + symbol.x;
+      vertices[v++] = rotatedVertices[1] + symbol.y + age;
+      vertices[v++] = 0.0 + offset;
+      vertices[v++] = 1;
+      vertices[v++] = rotatedVertices[2] + symbol.x;
+      vertices[v++] = rotatedVertices[3] + symbol.y + age;
+      vertices[v++] = 0.2 + offset;
+      vertices[v++] = 1;
+      vertices[v++] = rotatedVertices[4] + symbol.x;
+      vertices[v++] = rotatedVertices[5] + symbol.y + age;
+      vertices[v++] = 0.2 + offset;
+      vertices[v++] = 0.0;
+      vertices[v++] = rotatedVertices[6] + symbol.x;
+      vertices[v++] = rotatedVertices[7] + symbol.y + age;
+      vertices[v++] = 0.0 + offset;
+      vertices[v++] = 0.0;
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+      gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+    });    
 
     if (this.mode === "DRAW" || this.mode === "ERASE") {
       const [x, y] = this.cursor;
@@ -680,6 +835,10 @@ export class Game {
     this.globalOffset[1] += gy * this.zoom;
     this.globalOffset[0] += (this.offsetTarget[0] - this.globalOffset[0]) * .2;
     this.globalOffset[1] += (this.offsetTarget[1] - this.globalOffset[1]) * .2;
+
+    this.symbols = this.symbols.filter(symbol => {
+      return payload.time - symbol.born < 3000;
+    });
   }
 
   async prepare() {
@@ -772,10 +931,10 @@ export class Game {
   cursor = [0, 0];
   
 
-  createCreature(x?: number, y?: number, born?: number) {
+  createCreature(x?: number, y?: number, born?: number, skin?: [number, number, number]) {
     const creature = new Creature();
     const light = Math.random() - .5, colorize = .3;
-    creature.skin = [
+    creature.skin = skin ?? [
       light + colorize * (Math.random() - .5),
       light + colorize * (Math.random() - .5),
       light + colorize * (Math.random() - .5),
@@ -783,6 +942,7 @@ export class Game {
     creature.direction = Math.random() > .5 ? 1 : -1;
     creature.timeStart = Math.random() * 1000;
     creature.born = born ?? -10000;
+    creature.lastSymbol = creature.born;
     const size = .01;
     const member: Member = {
       creature,
@@ -802,11 +962,28 @@ export class Game {
       );
     }
     this.creatures.push(creature);    
+    return creature;
+  }
+
+  createSymbol({ x, y, index, rotation, size, born }: {
+    x: number;
+    y: number;
+    index: number;
+    rotation: number;
+    size: number;
+    born: number;
+  }) {
+    const symbol = new Symbol({
+      x, y, index, rotation, size, born
+    });
+    this.symbols.push(symbol);
+    return symbol;
   }
 
   async prepareCreatures() {
     for (let i = 0; i < TOTAL_CREATURES; i++) {
-      this.createCreature();
+      const creature = this.createCreature();
+      creature.lastSymbol = 5000;
     }
   }
 

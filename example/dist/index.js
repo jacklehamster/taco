@@ -26494,6 +26494,7 @@ var jsx_dev_runtime = __toESM2(require_jsx_dev_runtime(), 1);
 var CELL_SIZE = 0.03;
 var urlVars = new URLSearchParams(window.location.search);
 var TOTAL_CREATURES = (Number.isNaN(urlVars.get("num")) ? 0 : parseInt(urlVars.get("num"))) || 2;
+var EMOJIS = ["\uD83D\uDE34", "\uD83E\uDD71", "\uD83D\uDE14", "\uD83D\uDE10", "\uD83D\uDE42", "\uD83D\uDE0A", "\uD83D\uDE04", "\uD83D\uDE02", "\uD83E\uDD23", "\uD83E\uDD2A"];
 var vertexShaderSource = `
 attribute vec2 coordinates;
 attribute vec2 textureCoord;
@@ -26523,6 +26524,25 @@ var MEMBER_SIZE = [1, 1, 0, 1.1, 0, 0.9, 0.8];
 var nextId = 1;
 var thrillTotal = 0;
 var love = 0;
+var totalScore = 0;
+var age = 0;
+
+class Symbol2 {
+  x;
+  y;
+  rotation;
+  index;
+  size = 1;
+  born = 0;
+  constructor({ x, y, index, size, rotation, born }) {
+    this.x = x;
+    this.y = y;
+    this.rotation = rotation;
+    this.index = index;
+    this.size = size;
+    this.born = born;
+  }
+}
 
 class Creature {
   direction = 1;
@@ -26550,7 +26570,8 @@ class Creature {
   gravity() {
     this.mov[1] -= 0.05;
   }
-  move(time, map) {
+  lastSymbol = 0;
+  move(time, map, game) {
     for (let i = this.members.length - 1;i > 0; i--) {
       this.members[i].x = this.members[i - 1].x;
       this.members[i].y = this.members[i - 1].y;
@@ -26590,6 +26611,17 @@ class Creature {
     if (speed > this.thrillSpeed) {
       this.thrillSpeed = speed;
       thrillTotal += speed;
+      if (time - this.lastSymbol > 500) {
+        this.lastSymbol = time;
+        game.createSymbol({
+          x: this.x,
+          y: this.y,
+          index: 1,
+          rotation: Math.random() - 0.5,
+          size: 1 + Math.abs(this.thrillSpeed) / 10,
+          born: time
+        });
+      }
     }
     this.thrillSpeed *= 0.999999;
   }
@@ -26634,10 +26666,28 @@ class Creature {
         const distance = dx * dx + dy * dy;
         if (distance < 0.0005) {
           this.influence -= dx;
+          const preLove = love;
           love += Math.abs(this.thrillSpeed / 10);
+          if (time - this.lastSymbol > 500 && Math.round(100 * preLove / creatures.length) !== Math.round(100 * love / creatures.length)) {
+            this.lastSymbol = time;
+            game.createSymbol({
+              x: this.x,
+              y: this.y,
+              index: 0,
+              rotation: Math.random() - 0.5,
+              size: 1 + Math.abs(this.thrillSpeed) / 10,
+              born: time
+            });
+          }
           if (love > creatures.length && this.getSize(time) >= 0.9) {
             love = 0;
-            game.createCreature(this.x, this.y, time);
+            const light = Math.random() - 0.5, colorize = 0.5;
+            const spe = light + colorize * (Math.random() - 0.5);
+            game.createCreature(this.x, this.y, time, [
+              Math.random() < 0.01 ? spe : Math.random() < 0.5 ? this.skin[0] : randomCreature.skin[0],
+              Math.random() < 0.01 ? spe : Math.random() < 0.5 ? this.skin[1] : randomCreature.skin[1],
+              Math.random() < 0.01 ? spe : Math.random() < 0.5 ? this.skin[2] : randomCreature.skin[2]
+            ]);
           }
         }
       }
@@ -26712,12 +26762,16 @@ class Game {
   gl;
   texture = null;
   creatures = [];
+  symbols = [];
   map = new WorldMap;
   mode = "SELECT";
   labelCount;
   progressJoy;
   progressHeart;
   labelJoyValue;
+  labelJoyEmoji;
+  labelScore;
+  labelAge;
   constructor() {
     document.body.style.backgroundColor = "#333333";
     this.container = document.body.appendChild(document.createElement("div"));
@@ -26734,6 +26788,10 @@ class Game {
     this.container.style.height = "100vh";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
+    document.body.style.userSelect = "none";
+    document.body.style.overflow = "hidden";
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
     {
       const ui = this.container.appendChild(document.createElement("div"));
       ui.style.position = "absolute";
@@ -26741,6 +26799,14 @@ class Game {
       ui.style.left = "10px";
       ui.style.display = "flex";
       ui.style.flexDirection = "column";
+      ui.style.pointerEvents = "none";
+      {
+        const label = ui.appendChild(document.createElement("label"));
+        label.textContent = "SCORE: 0";
+        label.style.color = "snow";
+        label.style.fontWeight = "bold";
+        this.labelScore = label;
+      }
       {
         const container = ui.appendChild(document.createElement("div"));
         container.style.display = "flex";
@@ -26772,6 +26838,7 @@ class Game {
         label.textContent = "\uD83D\uDE0A: ";
         label.style.color = "snow";
         label.style.marginRight = "8px";
+        this.labelJoyEmoji = label;
         const progressBar = container.appendChild(document.createElement("div"));
         progressBar.style.flexGrow = "1";
         progressBar.style.height = "10px";
@@ -26792,9 +26859,15 @@ class Game {
       }
       {
         const label = ui.appendChild(document.createElement("label"));
-        label.textContent = "Tardigrades: 0";
+        label.textContent = "";
         label.style.color = "snow";
         this.labelCount = label;
+      }
+      {
+        const label = ui.appendChild(document.createElement("label"));
+        label.textContent = "";
+        label.style.color = "snow";
+        this.labelAge = label;
       }
     }
     {
@@ -26866,20 +26939,48 @@ class Game {
   }
   initialized = false;
   shaderProgram = null;
+  lastDanger = 0;
   refresh(payload) {
     this.creatures.forEach((creature) => creature.gravity());
-    this.creatures.forEach((creature) => creature.move(payload.time, this.map));
+    this.creatures.forEach((creature) => creature.move(payload.time, this.map, this));
     this.creatures.forEach((creature) => creature.adjustDirection());
     this.creatures.forEach((creature) => creature.act(payload.time, this.map, this.creatures, this));
+    thrillTotal *= 1 - 0.000005 * (this.creatures.length + 5);
+    totalScore += Math.round(thrillTotal / 1000 + Math.random() * Math.random());
+    age++;
     if (!payload.renderFrame) {
       return;
     }
-    thrillTotal *= 0.999;
-    if (Math.random() < 0.1) {
+    {
       const lovePercentage = love / this.creatures.length * 100;
       this.progressHeart.style.width = `${lovePercentage}%`;
       this.progressJoy.style.width = `${thrillTotal / (this.creatures.length * 100) * 100}%`;
       this.labelJoyValue.textContent = `${Math.round(thrillTotal)} / ${this.creatures.length * 100}`;
+      if (payload.time > 5000) {
+        const joyIndex = Math.min(EMOJIS.length - 1, Math.floor(EMOJIS.length * thrillTotal / (this.creatures.length * 100)));
+        this.labelJoyEmoji.textContent = `${EMOJIS[joyIndex]}: `;
+        if (joyIndex < 1) {
+          this.progressJoy.style.backgroundColor = Math.random() < 0.5 ? "red" : "yellow";
+          if (payload.time > 30000 && payload.time - this.lastDanger > 1e4) {
+            alert("Game Over! Your tardigrades are too sad to continue.");
+            this.motor.stopLoop?.();
+          }
+        } else if (joyIndex < 3) {
+          this.progressJoy.style.backgroundColor = "brown";
+          this.lastDanger = payload.time;
+        } else if (joyIndex < 5) {
+          this.progressJoy.style.backgroundColor = "orange";
+          this.lastDanger = payload.time;
+        } else if (joyIndex === 9) {
+          this.progressJoy.style.backgroundColor = "gold";
+          this.lastDanger = payload.time;
+        } else {
+          this.progressJoy.style.backgroundColor = "yellow";
+          this.lastDanger = payload.time;
+        }
+      }
+      this.labelScore.textContent = `Score: ${totalScore}`;
+      this.labelAge.textContent = `Year: ${Math.floor(age / 1000)}`;
     }
     const gl = this.gl;
     if (!this.initialized) {
@@ -26919,19 +27020,19 @@ class Game {
       const blockVertices2 = new Float32Array([
         -1 / this.zoom,
         -1 / this.zoom - this.globalOffset[1],
-        0.2499,
+        0.09996000000000001,
         0.4999,
         1 / this.zoom,
         -1 / this.zoom - this.globalOffset[1],
-        0.2501,
+        0.10003999999999999,
         0.4999,
         1 / this.zoom,
         0,
-        0.2501,
+        0.10003999999999999,
         0.5001,
         -1 / this.zoom,
         0,
-        0.2499,
+        0.09996000000000001,
         0.5001
       ]);
       gl.bufferData(gl.ARRAY_BUFFER, blockVertices2, gl.STATIC_DRAW);
@@ -27046,23 +27147,70 @@ class Game {
         let v = 0;
         vertices[v++] = rotatedVertices[0] + member.x;
         vertices[v++] = rotatedVertices[1] + member.y;
-        vertices[v++] = creature.swapX(0) + offset;
+        vertices[v++] = (creature.swapX(0) + offset) * 2 / 5;
         vertices[v++] = 1;
         vertices[v++] = rotatedVertices[2] + member.x;
         vertices[v++] = rotatedVertices[3] + member.y;
-        vertices[v++] = creature.swapX(0.5) + offset;
+        vertices[v++] = (creature.swapX(0.5) + offset) * 2 / 5;
         vertices[v++] = 1;
         vertices[v++] = rotatedVertices[4] + member.x;
         vertices[v++] = rotatedVertices[5] + member.y;
-        vertices[v++] = creature.swapX(0.5) + offset;
+        vertices[v++] = (creature.swapX(0.5) + offset) * 2 / 5;
         vertices[v++] = 0;
         vertices[v++] = rotatedVertices[6] + member.x;
         vertices[v++] = rotatedVertices[7] + member.y;
-        vertices[v++] = creature.swapX(0) + offset;
+        vertices[v++] = (creature.swapX(0) + offset) * 2 / 5;
         vertices[v++] = 0;
         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
         gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
       }
+    });
+    gl.uniform2f(positionUniform, 0, 0);
+    gl.uniform3fv(lightUniform, [1, 1, 1]);
+    this.symbols.forEach((symbol) => {
+      const spriteSize = CELL_SIZE * Math.min(2, symbol.size) / this.zoom;
+      const rotation = symbol.rotation;
+      const cos = Math.cos(rotation);
+      const sin = Math.sin(rotation);
+      const originalVertices2 = [
+        -spriteSize,
+        -spriteSize,
+        spriteSize,
+        -spriteSize,
+        spriteSize,
+        spriteSize,
+        -spriteSize,
+        spriteSize
+      ];
+      const rotatedVertices2 = [];
+      for (let i = 0;i < originalVertices2.length; i += 2) {
+        const x2 = originalVertices2[i];
+        const y2 = originalVertices2[i + 1];
+        const rotatedX = x2 * cos - y2 * sin;
+        const rotatedY = x2 * sin + y2 * cos;
+        rotatedVertices2.push(rotatedX, rotatedY);
+      }
+      const age2 = (payload.time - symbol.born) / 3000 * 0.1;
+      const offset = (3 + symbol.index) / 5;
+      let v = 0;
+      vertices[v++] = rotatedVertices2[0] + symbol.x;
+      vertices[v++] = rotatedVertices2[1] + symbol.y + age2;
+      vertices[v++] = 0 + offset;
+      vertices[v++] = 1;
+      vertices[v++] = rotatedVertices2[2] + symbol.x;
+      vertices[v++] = rotatedVertices2[3] + symbol.y + age2;
+      vertices[v++] = 0.2 + offset;
+      vertices[v++] = 1;
+      vertices[v++] = rotatedVertices2[4] + symbol.x;
+      vertices[v++] = rotatedVertices2[5] + symbol.y + age2;
+      vertices[v++] = 0.2 + offset;
+      vertices[v++] = 0;
+      vertices[v++] = rotatedVertices2[6] + symbol.x;
+      vertices[v++] = rotatedVertices2[7] + symbol.y + age2;
+      vertices[v++] = 0 + offset;
+      vertices[v++] = 0;
+      gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+      gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
     });
     if (this.mode === "DRAW" || this.mode === "ERASE") {
       const [x2, y2] = this.cursor;
@@ -27103,6 +27251,9 @@ class Game {
     this.globalOffset[1] += gy * this.zoom;
     this.globalOffset[0] += (this.offsetTarget[0] - this.globalOffset[0]) * 0.2;
     this.globalOffset[1] += (this.offsetTarget[1] - this.globalOffset[1]) * 0.2;
+    this.symbols = this.symbols.filter((symbol) => {
+      return payload.time - symbol.born < 3000;
+    });
   }
   async prepare() {
     const gl = this.gl;
@@ -27184,10 +27335,10 @@ class Game {
   offsetTarget = [0, 0];
   globalOffset = [0, 0];
   cursor = [0, 0];
-  createCreature(x, y, born) {
+  createCreature(x, y, born, skin) {
     const creature = new Creature;
     const light = Math.random() - 0.5, colorize = 0.3;
-    creature.skin = [
+    creature.skin = skin ?? [
       light + colorize * (Math.random() - 0.5),
       light + colorize * (Math.random() - 0.5),
       light + colorize * (Math.random() - 0.5)
@@ -27195,6 +27346,7 @@ class Game {
     creature.direction = Math.random() > 0.5 ? 1 : -1;
     creature.timeStart = Math.random() * 1000;
     creature.born = born ?? -1e4;
+    creature.lastSymbol = creature.born;
     const size = 0.01;
     const member = {
       creature,
@@ -27212,10 +27364,24 @@ class Game {
       });
     }
     this.creatures.push(creature);
+    return creature;
+  }
+  createSymbol({ x, y, index, rotation, size, born }) {
+    const symbol = new Symbol2({
+      x,
+      y,
+      index,
+      rotation,
+      size,
+      born
+    });
+    this.symbols.push(symbol);
+    return symbol;
   }
   async prepareCreatures() {
     for (let i = 0;i < TOTAL_CREATURES; i++) {
-      this.createCreature();
+      const creature = this.createCreature();
+      creature.lastSymbol = 5000;
     }
   }
   startLoop() {
