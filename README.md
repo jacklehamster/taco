@@ -15,3 +15,14 @@
 ## Github Source
 
 [https://github.com/jacklehamster/taco/](https://github.com/jacklehamster/taco/)
+
+
+## Dev notes
+
+This is just for me to remember implementation details I used.
+
+- WebGL, one drawcall per sprite. Peaks at 1000 creatures
+- Virtual infinite grid
+- Destructible terrain using cells. Could use image.
+- Would use less mem as bitmap.
+- 
