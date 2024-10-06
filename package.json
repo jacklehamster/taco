@@ -49,5 +49,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "motor-loop": "^1.0.24"
   }
 }

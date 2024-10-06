@@ -1,16 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bun Template</title>
   </head>
   <body>
+    <img
+      id="img"
+      title="tardigrade"
+      src="tardigrades3.png"
+      style="display: none"
+    />
+    <audio id="audio" src="mus.mp3" loop></audio>
   </body>
   <script type="module">
-    import { Hello } from './dist/index.js';
-
-    const h1 = document.body.appendChild(document.createElement("h1"));
-    h1.textContent = Hello.hello();
+    import { game } from "./dist/index.js";
+    document.addEventListener(
+      "click",
+      () => {
+        img.style.display = "";
+        document.querySelector("audio").play();
+        document.addEventListener(
+          "click",
+          () => {
+            img.style.display = "none";
+            document.querySelector("audio").pause();
+            game.start();
+          },
+          { once: true }
+        );
+      },
+      { once: true }
+    );
   </script>
 </html>

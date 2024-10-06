@@ -5,7 +5,7 @@
 import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Hello, HelloComponent } from "bun-template";
+import { HelloComponent, Game } from "bun-template";
 
 const div = document.body.appendChild(document.createElement("div"));
 
@@ -18,8 +18,8 @@ root.render(location.search.indexOf("strict-mode") >= 0 ?
   </StrictMode> : <HelloComponent />
 );
 
-//  Hello
-Hello.hello();
 
+const game = new Game();
+(window as any).game = game;
 
-export {Hello};
+export { game };
