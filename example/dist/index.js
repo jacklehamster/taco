@@ -26878,8 +26878,8 @@ class Game {
     if (Math.random() < 0.1) {
       const lovePercentage = love / this.creatures.length * 100;
       this.progressHeart.style.width = `${lovePercentage}%`;
-      this.progressJoy.style.width = `${thrillTotal / 1000 * 100}%`;
-      this.labelJoyValue.textContent = `${Math.round(thrillTotal)}`;
+      this.progressJoy.style.width = `${thrillTotal / (this.creatures.length * 100) * 100}%`;
+      this.labelJoyValue.textContent = `${Math.round(thrillTotal)} / ${this.creatures.length * 100}`;
     }
     const gl = this.gl;
     if (!this.initialized) {

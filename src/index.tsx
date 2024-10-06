@@ -454,8 +454,8 @@ export class Game {
       this.progressHeart!.style.width = `${lovePercentage}%`;
 
       // Update the joy label and progress bar
-      this.progressJoy!.style.width = `${thrillTotal / 1000 * 100}%`;
-      this.labelJoyValue!.textContent = `${Math.round(thrillTotal)}`;
+      this.progressJoy!.style.width = `${thrillTotal / (this.creatures.length*100) * 100}%`;
+      this.labelJoyValue!.textContent = `${Math.round(thrillTotal)} / ${this.creatures.length*100}`;
     }
     
 
