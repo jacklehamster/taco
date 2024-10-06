@@ -1,7 +1,7 @@
 {
-  "name": "bun-template",
+  "name": "@dobuki/taco",
   "module": "src/index.tsx",
-  "description": "Bun template for creating projects using bunjs",
+  "description": "Taco",
   "version": "1.0.64",
   "keywords": [
     "bun",
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jacklehamster/bun-template.git"
+    "url": "git@github.com:jacklehamster/taco.git"
   },
   "homepage": "https://jacklehamster.github.io/bun-template/",
   "author": {
