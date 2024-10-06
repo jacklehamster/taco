@@ -330,6 +330,9 @@ export class Game {
   labelAge?: HTMLLabelElement;
   showSymbolsCheckbox?: HTMLInputElement;
   showSymbols = true;
+  sandboxMode = false;
+  sandboxCheckBox?: HTMLInputElement;
+  exportButton?: HTMLButtonElement;
 
   constructor() {
     document.body.style.backgroundColor = "#333333";
@@ -451,8 +454,10 @@ export class Game {
       const refreshCursor = () => {
         this.canvas.style.cursor = this.mode === "SELECT" ? "default" : this.mode === "DRAW" || this.mode === "ERASE" ? "none" : "default";
         buttons.childNodes.forEach(c => {
-          (c as any).style.backgroundColor = c.textContent?.toUpperCase() === this.mode ? "white" : "transparent";
-          (c as any).style.color = c.textContent?.toUpperCase() === this.mode ? "black" : "white";
+          if ((c as any)?.type === "button" || (c as any)?.tagName === "BUTTON") {
+            (c as any).style.backgroundColor = c.textContent?.toUpperCase() === this.mode ? "white" : "transparent";
+            (c as any).style.color = (c as any).disabled ? "gray" : c.textContent?.toUpperCase() === this.mode ? "black" : "white";  
+          }
         });
       };
       {
@@ -502,6 +507,7 @@ export class Game {
         button.addEventListener("click", () => {
           this.exportGame();
         });
+        this.exportButton = button;
       }
       {
         const button = buttons.appendChild(document.createElement("button"));
@@ -518,11 +524,37 @@ export class Game {
         this.showSymbolsCheckbox = checkbox;
         checkbox.addEventListener("change", () => {
           this.showSymbols = checkbox.checked;
+          refreshCursor();
         });
         const label = buttons.appendChild(document.createElement("label"));
         label.textContent = "Show statuses";
         label.htmlFor = "showSymbols";
         label.style.color = "snow";
+      }
+      {
+        const checkbox = buttons.appendChild(document.createElement("input"));
+        checkbox.type = "checkbox";
+        checkbox.checked = false;
+        checkbox.id = "sandboxMode";
+        checkbox.addEventListener("change", () => {
+          if (confirm("Are you sure you want to enable sandbox mode (no gameover)?" + "\n" + 
+            "This will disable scores, and you can't disable until you restart.")) {
+            this.sandboxMode = checkbox.checked;
+            checkbox.disabled = true;
+            this.exportButton!.disabled = true;
+          } else {
+            checkbox.checked = false;
+          }
+          refreshCursor();
+        });
+        const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+
+        checkbox.disabled = tardigrades < 100;
+        const label = buttons.appendChild(document.createElement("label"));
+        label.textContent = "Sandbox mode (reach 100 to unlock)";
+        label.htmlFor = "sandboxMode";
+        label.style.color = "gray";
+        this.sandboxCheckBox = checkbox;
       }
       refreshCursor();
     }
@@ -534,6 +566,9 @@ export class Game {
 
   timeout: Record<string, Timer> = {};
   scoreAndDebounce(score: () => number, board: string) {
+    if (this.sandboxMode) {
+      return;
+    }
     clearTimeout(this.timeout[board]);
     this.timeout[board] = setTimeout(() => {
       newgrounds.postScore(score(), board);
@@ -571,9 +606,11 @@ export class Game {
         if (joyIndex < 1) {
           this.progressJoy!.style.backgroundColor = Math.random() < .5 ? "red": "yellow";
           if (payload.time > 30000 && payload.time - this.lastDanger > 10000) {
-            newgrounds.postScore(totalScore, "Score"); 
-            alert("Game Over! Your tardigrades are too sad to continue.");
-            this.motor.stopLoop?.();
+            if (!this.sandboxMode) {
+              newgrounds.postScore(totalScore, "Score"); 
+              alert("Game Over! Your tardigrades are too sad to continue.");
+              this.motor.stopLoop?.();  
+            }
           }
         } else if (joyIndex < 3) {
           this.progressJoy!.style.backgroundColor = "brown";
@@ -721,19 +758,6 @@ export class Game {
       }
 
       displayedCreatures.push(creature);
-      this.labelCount!.textContent = `Tardigrades: ${displayedCreatures.length}`;
-      const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
-      if (this.creatures.length > 5 && this.creatures.length > tardigrades) {
-        localStorage.setItem("tardigrades", this.creatures.length.toString());
-        this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
-        if (this.creatures.length >= 12) {
-          newgrounds.unlockMedal("A dozen");
-        } else if (this.creatures.length >= 100) {
-          newgrounds.unlockMedal("100 Tardigrades");
-        } else if (this.creatures.length >= 1000) {
-          newgrounds.unlockMedal("1000 Tardigrades");
-        }
-      }
     });
     const limit = 1000;
     if (displayedCreatures.length > limit) {
@@ -1007,6 +1031,21 @@ export class Game {
       );
     }
     this.creatures.push(creature);    
+
+    this.labelCount!.textContent = `Tardigrades: ${this.creatures.length}`;
+    const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+    if (this.creatures.length > 5 && this.creatures.length > tardigrades) {
+      localStorage.setItem("tardigrades", this.creatures.length.toString());
+      this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
+      if (this.creatures.length >= 12) {
+        newgrounds.unlockMedal("A dozen");
+      } else if (this.creatures.length >= 100) {
+        newgrounds.unlockMedal("100 Tardigrades");
+        this.sandboxCheckBox?.removeAttribute("disabled");
+      } else if (this.creatures.length >= 1000) {
+        newgrounds.unlockMedal("1000 Tardigrades");
+      }
+    }
     return creature;
   }
 
