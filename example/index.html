@@ -6,14 +6,19 @@
     <title>Tardigrades</title>
   </head>
   <body>
-    <h1>Tiny Garden of Eden</h1>
-    <h3>Click here to continue</h3>
-    <img
-      id="img"
-      title="tardigrade"
-      src="tardigrades3.png"
-      style="display: none"
-    />
+    <div id="present" style="width: 100%; text-align: center">
+      <br />
+      <br />
+      <h1>Tiny Garden of Eden</h1>
+      <h3>Click here to continue</h3>
+    </div>
+    <div id="img" style="width: 100%; display: none">
+      <img
+        title="tardigrade"
+        src="tardigrades4.png"
+        style="max-height: 100vh; margin: auto"
+      />
+    </div>
     <audio id="audio" src="mus.mp3" loop></audio>
   </body>
   <script type="module">
@@ -21,6 +26,7 @@
     document.addEventListener(
       "click",
       () => {
+        document.querySelector("#present").style.display = "none";
         img.style.display = "";
         document.querySelector("audio").play();
         document.addEventListener(

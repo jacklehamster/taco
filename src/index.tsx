@@ -333,6 +333,7 @@ export class Game {
   sandboxMode = false;
   sandboxCheckBox?: HTMLInputElement;
   exportButton?: HTMLButtonElement;
+  ui: HTMLDivElement;
 
   constructor() {
     document.body.style.backgroundColor = "#333333";
@@ -359,20 +360,14 @@ export class Game {
 
     {
       const ui = this.container.appendChild(document.createElement("div"));
+      this.ui = ui;
       ui.style.position = "absolute";
       ui.style.top = "10px";
       ui.style.left = "10px";
       ui.style.display = "flex";
       ui.style.flexDirection = "column";
       ui.style.pointerEvents = "none";
-
-      {
-        const label = ui.appendChild(document.createElement("label"));
-        label.textContent = "SCORE: 0";
-        label.style.color = "snow";
-        label.style.fontWeight = "bold";
-        this.labelScore = label;  
-      }
+      ui.style.display = "none";
 
       {
         const container = ui.appendChild(document.createElement("div"));
@@ -445,6 +440,14 @@ export class Game {
         label.textContent = "";
         label.style.color = "snow";
         this.labelAge = label;
+      }
+
+      {
+        const label = ui.appendChild(document.createElement("label"));
+        label.textContent = "SCORE: 0";
+        label.style.color = "snow";
+        label.style.fontWeight = "bold";
+        this.labelScore = label;  
       }
     }
 
@@ -970,6 +973,7 @@ export class Game {
           height: 7,
         });
       }
+      this.ui.style.display = "flex";
     });
 
     const HIGHWALL = 200;
