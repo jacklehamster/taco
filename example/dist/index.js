@@ -472,8 +472,8 @@ var require_react_development = __commonJS((exports, module) => {
           props.children = children;
         } else if (childrenLength > 1) {
           var childArray = Array(childrenLength);
-          for (var i = 0;i < childrenLength; i++) {
-            childArray[i] = arguments[i + 2];
+          for (var i2 = 0;i2 < childrenLength; i2++) {
+            childArray[i2] = arguments[i2 + 2];
           }
           {
             if (Object.freeze) {
@@ -548,8 +548,8 @@ var require_react_development = __commonJS((exports, module) => {
           props.children = children;
         } else if (childrenLength > 1) {
           var childArray = Array(childrenLength);
-          for (var i = 0;i < childrenLength; i++) {
-            childArray[i] = arguments[i + 2];
+          for (var i2 = 0;i2 < childrenLength; i2++) {
+            childArray[i2] = arguments[i2 + 2];
           }
           props.children = childArray;
         }
@@ -560,7 +560,7 @@ var require_react_development = __commonJS((exports, module) => {
       }
       var SEPARATOR = ".";
       var SUBSEPARATOR = ":";
-      function escape(key) {
+      function escape2(key) {
         var escapeRegex = /[=:]/g;
         var escaperLookup = {
           "=": "=0",
@@ -581,7 +581,7 @@ var require_react_development = __commonJS((exports, module) => {
           {
             checkKeyStringCoercion(element.key);
           }
-          return escape("" + element.key);
+          return escape2("" + element.key);
         }
         return index.toString(36);
       }
@@ -637,9 +637,9 @@ var require_react_development = __commonJS((exports, module) => {
         var subtreeCount = 0;
         var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
         if (isArray(children)) {
-          for (var i = 0;i < children.length; i++) {
-            child = children[i];
-            nextName = nextNamePrefix + getElementKey(child, i);
+          for (var i2 = 0;i2 < children.length; i2++) {
+            child = children[i2];
+            nextName = nextNamePrefix + getElementKey(child, i2);
             subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
           }
         } else {
@@ -1413,8 +1413,8 @@ var require_react_development = __commonJS((exports, module) => {
           return;
         }
         if (isArray(node)) {
-          for (var i = 0;i < node.length; i++) {
-            var child = node[i];
+          for (var i2 = 0;i2 < node.length; i2++) {
+            var child = node[i2];
             if (isValidElement(child)) {
               validateExplicitKey(child, parentType);
             }
@@ -1468,8 +1468,8 @@ var require_react_development = __commonJS((exports, module) => {
       function validateFragmentProps(fragment) {
         {
           var keys = Object.keys(fragment.props);
-          for (var i = 0;i < keys.length; i++) {
-            var key = keys[i];
+          for (var i2 = 0;i2 < keys.length; i2++) {
+            var key = keys[i2];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
               error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -1517,8 +1517,8 @@ var require_react_development = __commonJS((exports, module) => {
           return element;
         }
         if (validType) {
-          for (var i = 2;i < arguments.length; i++) {
-            validateChildKeys(arguments[i], type);
+          for (var i2 = 2;i2 < arguments.length; i2++) {
+            validateChildKeys(arguments[i2], type);
           }
         }
         if (type === REACT_FRAGMENT_TYPE) {
@@ -1552,8 +1552,8 @@ var require_react_development = __commonJS((exports, module) => {
       }
       function cloneElementWithValidation(element, props, children) {
         var newElement = cloneElement.apply(this, arguments);
-        for (var i = 2;i < arguments.length; i++) {
-          validateChildKeys(arguments[i], newElement.type);
+        for (var i2 = 2;i2 < arguments.length; i2++) {
+          validateChildKeys(arguments[i2], newElement.type);
         }
         validatePropTypes(newElement);
         return newElement;
@@ -1730,17 +1730,17 @@ var require_react_development = __commonJS((exports, module) => {
         {
           if (!isFlushing) {
             isFlushing = true;
-            var i = 0;
+            var i2 = 0;
             try {
-              for (;i < queue.length; i++) {
-                var callback = queue[i];
+              for (;i2 < queue.length; i2++) {
+                var callback = queue[i2];
                 do {
                   callback = callback(true);
                 } while (callback !== null);
               }
               queue.length = 0;
             } catch (error2) {
-              queue = queue.slice(i + 1);
+              queue = queue.slice(i2 + 1);
               throw error2;
             } finally {
               isFlushing = false;
@@ -1840,8 +1840,8 @@ var require_scheduler_development = __commonJS((exports) => {
         }
         return first;
       }
-      function siftUp(heap, node, i) {
-        var index = i;
+      function siftUp(heap, node, i2) {
+        var index = i2;
         while (index > 0) {
           var parentIndex = index - 1 >>> 1;
           var parent = heap[parentIndex];
@@ -1854,8 +1854,8 @@ var require_scheduler_development = __commonJS((exports) => {
           }
         }
       }
-      function siftDown(heap, node, i) {
-        var index = i;
+      function siftDown(heap, node, i2) {
+        var index = i2;
         var length = heap.length;
         var halfLength = length >>> 1;
         while (index < halfLength) {
@@ -2373,8 +2373,8 @@ var require_react_dom_development = __commonJS((exports) => {
             possibleRegistrationNames.ondblclick = registrationName;
           }
         }
-        for (var i = 0;i < dependencies.length; i++) {
-          allNativeEvents.add(dependencies[i]);
+        for (var i2 = 0;i2 < dependencies.length; i2++) {
+          allNativeEvents.add(dependencies[i2]);
         }
       }
       var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
@@ -3645,8 +3645,8 @@ var require_react_dom_development = __commonJS((exports) => {
             checkAttributeStringCoercion(name, "name");
           }
           var group = queryRoot.querySelectorAll("input[name=" + JSON.stringify("" + name) + '][type="radio"]');
-          for (var i = 0;i < group.length; i++) {
-            var otherNode = group[i];
+          for (var i2 = 0;i2 < group.length; i2++) {
+            var otherNode = group[i2];
             if (otherNode === rootNode || otherNode.form !== rootNode.form) {
               continue;
             }
@@ -3724,8 +3724,8 @@ var require_react_dom_development = __commonJS((exports) => {
       function checkSelectPropTypes(props) {
         {
           checkControlledValueProps("select", props);
-          for (var i = 0;i < valuePropNames.length; i++) {
-            var propName = valuePropNames[i];
+          for (var i2 = 0;i2 < valuePropNames.length; i2++) {
+            var propName = valuePropNames[i2];
             if (props[propName] == null) {
               continue;
             }
@@ -3743,8 +3743,8 @@ var require_react_dom_development = __commonJS((exports) => {
         if (multiple) {
           var selectedValues = propValue;
           var selectedValue = {};
-          for (var i = 0;i < selectedValues.length; i++) {
-            selectedValue["$" + selectedValues[i]] = true;
+          for (var i2 = 0;i2 < selectedValues.length; i2++) {
+            selectedValue["$" + selectedValues[i2]] = true;
           }
           for (var _i = 0;_i < options2.length; _i++) {
             var selected = selectedValue.hasOwnProperty("$" + options2[_i].value);
@@ -4212,8 +4212,8 @@ var require_react_dom_development = __commonJS((exports) => {
         var expanded = {};
         for (var key in styles) {
           var longhands = shorthandToLonghand[key] || [key];
-          for (var i = 0;i < longhands.length; i++) {
-            expanded[longhands[i]] = key;
+          for (var i2 = 0;i2 < longhands.length; i2++) {
+            expanded[longhands[i2]] = key;
           }
         }
         return expanded;
@@ -5054,13 +5054,13 @@ var require_react_dom_development = __commonJS((exports) => {
       var IS_CAPTURE_PHASE = 1 << 2;
       var SHOULD_NOT_PROCESS_POLYFILL_EVENT_PLUGINS = IS_EVENT_HANDLE_NON_MANAGED_NODE | IS_NON_DELEGATED | IS_CAPTURE_PHASE;
       var currentReplayingEvent = null;
-      function setReplayingEvent(event) {
+      function setReplayingEvent(event2) {
         {
           if (currentReplayingEvent !== null) {
             error("Expected currently replaying event to be null. This error is likely caused by a bug in React. Please file an issue.");
           }
         }
-        currentReplayingEvent = event;
+        currentReplayingEvent = event2;
       }
       function resetReplayingEvent() {
         {
@@ -5070,8 +5070,8 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         currentReplayingEvent = null;
       }
-      function isReplayingEvent(event) {
-        return event === currentReplayingEvent;
+      function isReplayingEvent(event2) {
+        return event2 === currentReplayingEvent;
       }
       function getEventTarget(nativeEvent) {
         var target = nativeEvent.target || nativeEvent.srcElement || window;
@@ -5124,8 +5124,8 @@ var require_react_dom_development = __commonJS((exports) => {
         restoreQueue = null;
         restoreStateOfTarget(target);
         if (queuedTargets) {
-          for (var i = 0;i < queuedTargets.length; i++) {
-            restoreStateOfTarget(queuedTargets[i]);
+          for (var i2 = 0;i2 < queuedTargets.length; i2++) {
+            restoreStateOfTarget(queuedTargets[i2]);
           }
         }
       }
@@ -5249,13 +5249,13 @@ var require_react_dom_development = __commonJS((exports) => {
             var error2;
             var didSetError = false;
             var isCrossOriginError = false;
-            function handleWindowError(event) {
-              error2 = event.error;
+            function handleWindowError(event2) {
+              error2 = event2.error;
               didSetError = true;
-              if (error2 === null && event.colno === 0 && event.lineno === 0) {
+              if (error2 === null && event2.colno === 0 && event2.lineno === 0) {
                 isCrossOriginError = true;
               }
-              if (event.defaultPrevented) {
+              if (event2.defaultPrevented) {
                 if (error2 != null && typeof error2 === "object") {
                   try {
                     error2._suppressLogging = true;
@@ -6283,7 +6283,7 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       function createLaneMap(initial) {
         var laneMap = [];
-        for (var i = 0;i < TotalLanes; i++) {
+        for (var i2 = 0;i2 < TotalLanes; i2++) {
           laneMap.push(initial);
         }
         return laneMap;
@@ -6662,14 +6662,14 @@ var require_react_dom_development = __commonJS((exports) => {
           target,
           priority: updatePriority
         };
-        var i = 0;
-        for (;i < queuedExplicitHydrationTargets.length; i++) {
-          if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i].priority)) {
+        var i2 = 0;
+        for (;i2 < queuedExplicitHydrationTargets.length; i2++) {
+          if (!isHigherEventPriority(updatePriority, queuedExplicitHydrationTargets[i2].priority)) {
             break;
           }
         }
-        queuedExplicitHydrationTargets.splice(i, 0, queuedTarget);
-        if (i === 0) {
+        queuedExplicitHydrationTargets.splice(i2, 0, queuedTarget);
+        if (i2 === 0) {
           attemptExplicitHydrationTarget(queuedTarget);
         }
       }
@@ -6732,8 +6732,8 @@ var require_react_dom_development = __commonJS((exports) => {
       function retryIfBlockedOn(unblocked) {
         if (queuedDiscreteEvents.length > 0) {
           scheduleCallbackIfUnblocked(queuedDiscreteEvents[0], unblocked);
-          for (var i = 1;i < queuedDiscreteEvents.length; i++) {
-            var queuedEvent = queuedDiscreteEvents[i];
+          for (var i2 = 1;i2 < queuedDiscreteEvents.length; i2++) {
+            var queuedEvent = queuedDiscreteEvents[i2];
             if (queuedEvent.blockedOn === unblocked) {
               queuedEvent.blockedOn = null;
             }
@@ -7108,26 +7108,26 @@ var require_react_dom_development = __commonJS((exports) => {
         assign(SyntheticBaseEvent.prototype, {
           preventDefault: function() {
             this.defaultPrevented = true;
-            var event = this.nativeEvent;
-            if (!event) {
+            var event2 = this.nativeEvent;
+            if (!event2) {
               return;
             }
-            if (event.preventDefault) {
-              event.preventDefault();
-            } else if (typeof event.returnValue !== "unknown") {
-              event.returnValue = false;
+            if (event2.preventDefault) {
+              event2.preventDefault();
+            } else if (typeof event2.returnValue !== "unknown") {
+              event2.returnValue = false;
             }
             this.isDefaultPrevented = functionThatReturnsTrue;
           },
           stopPropagation: function() {
-            var event = this.nativeEvent;
-            if (!event) {
+            var event2 = this.nativeEvent;
+            if (!event2) {
               return;
             }
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (typeof event.cancelBubble !== "unknown") {
-              event.cancelBubble = true;
+            if (event2.stopPropagation) {
+              event2.stopPropagation();
+            } else if (typeof event2.cancelBubble !== "unknown") {
+              event2.cancelBubble = true;
             }
             this.isPropagationStopped = functionThatReturnsTrue;
           },
@@ -7141,8 +7141,8 @@ var require_react_dom_development = __commonJS((exports) => {
         eventPhase: 0,
         bubbles: 0,
         cancelable: 0,
-        timeStamp: function(event) {
-          return event.timeStamp || Date.now();
+        timeStamp: function(event2) {
+          return event2.timeStamp || Date.now();
         },
         defaultPrevented: 0,
         isTrusted: 0
@@ -7156,16 +7156,16 @@ var require_react_dom_development = __commonJS((exports) => {
       var lastMovementX;
       var lastMovementY;
       var lastMouseEvent;
-      function updateMouseMovementPolyfillState(event) {
-        if (event !== lastMouseEvent) {
-          if (lastMouseEvent && event.type === "mousemove") {
-            lastMovementX = event.screenX - lastMouseEvent.screenX;
-            lastMovementY = event.screenY - lastMouseEvent.screenY;
+      function updateMouseMovementPolyfillState(event2) {
+        if (event2 !== lastMouseEvent) {
+          if (lastMouseEvent && event2.type === "mousemove") {
+            lastMovementX = event2.screenX - lastMouseEvent.screenX;
+            lastMovementY = event2.screenY - lastMouseEvent.screenY;
           } else {
             lastMovementX = 0;
             lastMovementY = 0;
           }
-          lastMouseEvent = event;
+          lastMouseEvent = event2;
         }
       }
       var MouseEventInterface = assign({}, UIEventInterface, {
@@ -7182,21 +7182,21 @@ var require_react_dom_development = __commonJS((exports) => {
         getModifierState: getEventModifierState,
         button: 0,
         buttons: 0,
-        relatedTarget: function(event) {
-          if (event.relatedTarget === undefined)
-            return event.fromElement === event.srcElement ? event.toElement : event.fromElement;
-          return event.relatedTarget;
+        relatedTarget: function(event2) {
+          if (event2.relatedTarget === undefined)
+            return event2.fromElement === event2.srcElement ? event2.toElement : event2.fromElement;
+          return event2.relatedTarget;
         },
-        movementX: function(event) {
-          if ("movementX" in event) {
-            return event.movementX;
+        movementX: function(event2) {
+          if ("movementX" in event2) {
+            return event2.movementX;
           }
-          updateMouseMovementPolyfillState(event);
+          updateMouseMovementPolyfillState(event2);
           return lastMovementX;
         },
-        movementY: function(event) {
-          if ("movementY" in event) {
-            return event.movementY;
+        movementY: function(event2) {
+          if ("movementY" in event2) {
+            return event2.movementY;
           }
           return lastMovementY;
         }
@@ -7217,8 +7217,8 @@ var require_react_dom_development = __commonJS((exports) => {
       });
       var SyntheticAnimationEvent = createSyntheticEvent(AnimationEventInterface);
       var ClipboardEventInterface = assign({}, EventInterface, {
-        clipboardData: function(event) {
-          return "clipboardData" in event ? event.clipboardData : window.clipboardData;
+        clipboardData: function(event2) {
+          return "clipboardData" in event2 ? event2.clipboardData : window.clipboardData;
         }
       });
       var SyntheticClipboardEvent = createSyntheticEvent(ClipboardEventInterface);
@@ -7324,24 +7324,24 @@ var require_react_dom_development = __commonJS((exports) => {
         repeat: 0,
         locale: 0,
         getModifierState: getEventModifierState,
-        charCode: function(event) {
-          if (event.type === "keypress") {
-            return getEventCharCode(event);
+        charCode: function(event2) {
+          if (event2.type === "keypress") {
+            return getEventCharCode(event2);
           }
           return 0;
         },
-        keyCode: function(event) {
-          if (event.type === "keydown" || event.type === "keyup") {
-            return event.keyCode;
+        keyCode: function(event2) {
+          if (event2.type === "keydown" || event2.type === "keyup") {
+            return event2.keyCode;
           }
           return 0;
         },
-        which: function(event) {
-          if (event.type === "keypress") {
-            return getEventCharCode(event);
+        which: function(event2) {
+          if (event2.type === "keypress") {
+            return getEventCharCode(event2);
           }
-          if (event.type === "keydown" || event.type === "keyup") {
-            return event.keyCode;
+          if (event2.type === "keydown" || event2.type === "keyup") {
+            return event2.keyCode;
           }
           return 0;
         }
@@ -7378,11 +7378,11 @@ var require_react_dom_development = __commonJS((exports) => {
       });
       var SyntheticTransitionEvent = createSyntheticEvent(TransitionEventInterface);
       var WheelEventInterface = assign({}, MouseEventInterface, {
-        deltaX: function(event) {
-          return "deltaX" in event ? event.deltaX : ("wheelDeltaX" in event) ? -event.wheelDeltaX : 0;
+        deltaX: function(event2) {
+          return "deltaX" in event2 ? event2.deltaX : ("wheelDeltaX" in event2) ? -event2.wheelDeltaX : 0;
         },
-        deltaY: function(event) {
-          return "deltaY" in event ? event.deltaY : ("wheelDeltaY" in event) ? -event.wheelDeltaY : ("wheelDelta" in event) ? -event.wheelDelta : 0;
+        deltaY: function(event2) {
+          return "deltaY" in event2 ? event2.deltaY : ("wheelDeltaY" in event2) ? -event2.wheelDeltaY : ("wheelDelta" in event2) ? -event2.wheelDelta : 0;
         },
         deltaZ: 0,
         deltaMode: 0
@@ -7473,17 +7473,17 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         var listeners = accumulateTwoPhaseListeners(targetInst, eventType);
         if (listeners.length > 0) {
-          var event = new SyntheticCompositionEvent(eventType, domEventName, null, nativeEvent, nativeEventTarget);
+          var event2 = new SyntheticCompositionEvent(eventType, domEventName, null, nativeEvent, nativeEventTarget);
           dispatchQueue.push({
-            event,
+            event: event2,
             listeners
           });
           if (fallbackData) {
-            event.data = fallbackData;
+            event2.data = fallbackData;
           } else {
             var customData = getDataFromCustomEvent(nativeEvent);
             if (customData !== null) {
-              event.data = customData;
+              event2.data = customData;
             }
           }
         }
@@ -7549,12 +7549,12 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         var listeners = accumulateTwoPhaseListeners(targetInst, "onBeforeInput");
         if (listeners.length > 0) {
-          var event = new SyntheticInputEvent("onBeforeInput", "beforeinput", null, nativeEvent, nativeEventTarget);
+          var event2 = new SyntheticInputEvent("onBeforeInput", "beforeinput", null, nativeEvent, nativeEventTarget);
           dispatchQueue.push({
-            event,
+            event: event2,
             listeners
           });
-          event.data = chars;
+          event2.data = chars;
         }
       }
       function extractEvents(dispatchQueue, domEventName, targetInst, nativeEvent, nativeEventTarget, eventSystemFlags, targetContainer) {
@@ -7608,9 +7608,9 @@ var require_react_dom_development = __commonJS((exports) => {
         enqueueStateRestore(target);
         var listeners = accumulateTwoPhaseListeners(inst, "onChange");
         if (listeners.length > 0) {
-          var event = new SyntheticEvent("onChange", "change", null, nativeEvent, target);
+          var event2 = new SyntheticEvent("onChange", "change", null, nativeEvent, target);
           dispatchQueue.push({
-            event,
+            event: event2,
             listeners
           });
         }
@@ -7821,8 +7821,8 @@ var require_react_dom_development = __commonJS((exports) => {
         if (keysA.length !== keysB.length) {
           return false;
         }
-        for (var i = 0;i < keysA.length; i++) {
-          var currentKey = keysA[i];
+        for (var i2 = 0;i2 < keysA.length; i2++) {
+          var currentKey = keysA[i2];
           if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
             return false;
           }
@@ -8039,8 +8039,8 @@ var require_react_dom_development = __commonJS((exports) => {
           if (typeof priorFocusedElem.focus === "function") {
             priorFocusedElem.focus();
           }
-          for (var i = 0;i < ancestors.length; i++) {
-            var info = ancestors[i];
+          for (var i2 = 0;i2 < ancestors.length; i2++) {
+            var info = ancestors[i2];
             info.element.scrollLeft = info.left;
             info.element.scrollTop = info.top;
           }
@@ -8112,12 +8112,12 @@ var require_react_dom_development = __commonJS((exports) => {
           lastSelection = currentSelection;
           var listeners = accumulateTwoPhaseListeners(activeElementInst$1, "onSelect");
           if (listeners.length > 0) {
-            var event = new SyntheticEvent("onSelect", "select", null, nativeEvent, nativeEventTarget);
+            var event2 = new SyntheticEvent("onSelect", "select", null, nativeEvent, nativeEventTarget);
             dispatchQueue.push({
-              event,
+              event: event2,
               listeners
             });
-            event.target = activeElement$1;
+            event2.target = activeElement$1;
           }
         }
       }
@@ -8205,8 +8205,8 @@ var require_react_dom_development = __commonJS((exports) => {
         registerTwoPhaseEvent(reactName, [domEventName]);
       }
       function registerSimpleEvents() {
-        for (var i = 0;i < simpleEventPluginEvents.length; i++) {
-          var eventName = simpleEventPluginEvents[i];
+        for (var i2 = 0;i2 < simpleEventPluginEvents.length; i2++) {
+          var eventName = simpleEventPluginEvents[i2];
           var domEventName = eventName.toLowerCase();
           var capitalizedEvent = eventName[0].toUpperCase() + eventName.slice(1);
           registerSimpleEvent(domEventName, "on" + capitalizedEvent);
@@ -8337,39 +8337,39 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       var mediaEventTypes = ["abort", "canplay", "canplaythrough", "durationchange", "emptied", "encrypted", "ended", "error", "loadeddata", "loadedmetadata", "loadstart", "pause", "play", "playing", "progress", "ratechange", "resize", "seeked", "seeking", "stalled", "suspend", "timeupdate", "volumechange", "waiting"];
       var nonDelegatedEvents = new Set(["cancel", "close", "invalid", "load", "scroll", "toggle"].concat(mediaEventTypes));
-      function executeDispatch(event, listener, currentTarget) {
-        var type = event.type || "unknown-event";
-        event.currentTarget = currentTarget;
-        invokeGuardedCallbackAndCatchFirstError(type, listener, undefined, event);
-        event.currentTarget = null;
+      function executeDispatch(event2, listener, currentTarget) {
+        var type = event2.type || "unknown-event";
+        event2.currentTarget = currentTarget;
+        invokeGuardedCallbackAndCatchFirstError(type, listener, undefined, event2);
+        event2.currentTarget = null;
       }
-      function processDispatchQueueItemsInOrder(event, dispatchListeners, inCapturePhase) {
+      function processDispatchQueueItemsInOrder(event2, dispatchListeners, inCapturePhase) {
         var previousInstance;
         if (inCapturePhase) {
-          for (var i = dispatchListeners.length - 1;i >= 0; i--) {
-            var _dispatchListeners$i = dispatchListeners[i], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
-            if (instance !== previousInstance && event.isPropagationStopped()) {
+          for (var i2 = dispatchListeners.length - 1;i2 >= 0; i2--) {
+            var _dispatchListeners$i = dispatchListeners[i2], instance = _dispatchListeners$i.instance, currentTarget = _dispatchListeners$i.currentTarget, listener = _dispatchListeners$i.listener;
+            if (instance !== previousInstance && event2.isPropagationStopped()) {
               return;
             }
-            executeDispatch(event, listener, currentTarget);
+            executeDispatch(event2, listener, currentTarget);
             previousInstance = instance;
           }
         } else {
           for (var _i = 0;_i < dispatchListeners.length; _i++) {
             var _dispatchListeners$_i = dispatchListeners[_i], _instance = _dispatchListeners$_i.instance, _currentTarget = _dispatchListeners$_i.currentTarget, _listener = _dispatchListeners$_i.listener;
-            if (_instance !== previousInstance && event.isPropagationStopped()) {
+            if (_instance !== previousInstance && event2.isPropagationStopped()) {
               return;
             }
-            executeDispatch(event, _listener, _currentTarget);
+            executeDispatch(event2, _listener, _currentTarget);
             previousInstance = _instance;
           }
         }
       }
       function processDispatchQueue(dispatchQueue, eventSystemFlags) {
         var inCapturePhase = (eventSystemFlags & IS_CAPTURE_PHASE) !== 0;
-        for (var i = 0;i < dispatchQueue.length; i++) {
-          var _dispatchQueue$i = dispatchQueue[i], event = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
-          processDispatchQueueItemsInOrder(event, listeners, inCapturePhase);
+        for (var i2 = 0;i2 < dispatchQueue.length; i2++) {
+          var _dispatchQueue$i = dispatchQueue[i2], event2 = _dispatchQueue$i.event, listeners = _dispatchQueue$i.listeners;
+          processDispatchQueueItemsInOrder(event2, listeners, inCapturePhase);
         }
         rethrowCaughtError();
       }
@@ -8597,8 +8597,8 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         return null;
       }
-      function accumulateEnterLeaveListenersForEvent(dispatchQueue, event, target, common, inCapturePhase) {
-        var registrationName = event._reactName;
+      function accumulateEnterLeaveListenersForEvent(dispatchQueue, event2, target, common, inCapturePhase) {
+        var registrationName = event2._reactName;
         var listeners = [];
         var instance = target;
         while (instance !== null) {
@@ -8627,7 +8627,7 @@ var require_react_dom_development = __commonJS((exports) => {
         }
         if (listeners.length !== 0) {
           dispatchQueue.push({
-            event,
+            event: event2,
             listeners
           });
         }
@@ -8790,9 +8790,9 @@ var require_react_dom_development = __commonJS((exports) => {
         }
       }
       function updateDOMProperties(domElement, updatePayload, wasCustomComponentTag, isCustomComponentTag) {
-        for (var i = 0;i < updatePayload.length; i += 2) {
-          var propKey = updatePayload[i];
-          var propValue = updatePayload[i + 1];
+        for (var i2 = 0;i2 < updatePayload.length; i2 += 2) {
+          var propKey = updatePayload[i2];
+          var propValue = updatePayload[i2 + 1];
           if (propKey === STYLE) {
             setValueForStyles(domElement, propValue);
           } else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
@@ -8875,8 +8875,8 @@ var require_react_dom_development = __commonJS((exports) => {
             break;
           case "video":
           case "audio":
-            for (var i = 0;i < mediaEventTypes.length; i++) {
-              listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
+            for (var i2 = 0;i2 < mediaEventTypes.length; i2++) {
+              listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
             }
             props = rawProps;
             break;
@@ -9127,8 +9127,8 @@ var require_react_dom_development = __commonJS((exports) => {
             break;
           case "video":
           case "audio":
-            for (var i = 0;i < mediaEventTypes.length; i++) {
-              listenToNonDelegatedEvent(mediaEventTypes[i], domElement);
+            for (var i2 = 0;i2 < mediaEventTypes.length; i2++) {
+              listenToNonDelegatedEvent(mediaEventTypes[i2], domElement);
             }
             break;
           case "source":
@@ -10435,14 +10435,14 @@ var require_react_dom_development = __commonJS((exports) => {
       function flushSyncCallbacks() {
         if (!isFlushingSyncQueue && syncQueue !== null) {
           isFlushingSyncQueue = true;
-          var i = 0;
+          var i2 = 0;
           var previousUpdatePriority = getCurrentUpdatePriority();
           try {
             var isSync = true;
             var queue = syncQueue;
             setCurrentUpdatePriority(DiscreteEventPriority);
-            for (;i < queue.length; i++) {
-              var callback = queue[i];
+            for (;i2 < queue.length; i2++) {
+              var callback = queue[i2];
               do {
                 callback = callback(isSync);
               } while (callback !== null);
@@ -10451,7 +10451,7 @@ var require_react_dom_development = __commonJS((exports) => {
             includesLegacySyncCallbacks = false;
           } catch (error2) {
             if (syncQueue !== null) {
-              syncQueue = syncQueue.slice(i + 1);
+              syncQueue = syncQueue.slice(i2 + 1);
             }
             scheduleCallback(ImmediatePriority, flushSyncCallbacks);
             throw error2;
@@ -11512,8 +11512,8 @@ var require_react_dom_development = __commonJS((exports) => {
         function reconcileChildrenArray(returnFiber, currentFirstChild, newChildren, lanes) {
           {
             var knownKeys = null;
-            for (var i = 0;i < newChildren.length; i++) {
-              var child = newChildren[i];
+            for (var i2 = 0;i2 < newChildren.length; i2++) {
+              var child = newChildren[i2];
               knownKeys = warnOnInvalidKey(child, knownKeys, returnFiber);
             }
           }
@@ -12092,8 +12092,8 @@ var require_react_dom_development = __commonJS((exports) => {
       }
       function finishQueueingConcurrentUpdates() {
         if (concurrentQueues !== null) {
-          for (var i = 0;i < concurrentQueues.length; i++) {
-            var queue = concurrentQueues[i];
+          for (var i2 = 0;i2 < concurrentQueues.length; i2++) {
+            var queue = concurrentQueues[i2];
             var lastInterleavedUpdate = queue.interleaved;
             if (lastInterleavedUpdate !== null) {
               queue.interleaved = null;
@@ -12530,8 +12530,8 @@ var require_react_dom_development = __commonJS((exports) => {
         var effects = finishedQueue.effects;
         finishedQueue.effects = null;
         if (effects !== null) {
-          for (var i = 0;i < effects.length; i++) {
-            var effect = effects[i];
+          for (var i2 = 0;i2 < effects.length; i2++) {
+            var effect = effects[i2];
             var callback = effect.callback;
             if (callback !== null) {
               effect.callback = null;
@@ -12666,8 +12666,8 @@ var require_react_dom_development = __commonJS((exports) => {
       var Passive$1 = 8;
       var workInProgressSources = [];
       function resetWorkInProgressVersions() {
-        for (var i = 0;i < workInProgressSources.length; i++) {
-          var mutableSource = workInProgressSources[i];
+        for (var i2 = 0;i2 < workInProgressSources.length; i2++) {
+          var mutableSource = workInProgressSources[i2];
           {
             mutableSource._workInProgressVersionPrimary = null;
           }
@@ -12738,10 +12738,10 @@ var require_react_dom_development = __commonJS((exports) => {
             if (hookTypesDev !== null) {
               var table = "";
               var secondColumnStart = 30;
-              for (var i = 0;i <= hookTypesUpdateIndexDev; i++) {
-                var oldHookName = hookTypesDev[i];
-                var newHookName = i === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
-                var row = i + 1 + ". " + oldHookName;
+              for (var i2 = 0;i2 <= hookTypesUpdateIndexDev; i2++) {
+                var oldHookName = hookTypesDev[i2];
+                var newHookName = i2 === hookTypesUpdateIndexDev ? currentHookName : oldHookName;
+                var row = i2 + 1 + ". " + oldHookName;
                 while (row.length < secondColumnStart) {
                   row += " ";
                 }
@@ -12773,8 +12773,8 @@ var require_react_dom_development = __commonJS((exports) => {
             error("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
           }
         }
-        for (var i = 0;i < prevDeps.length && i < nextDeps.length; i++) {
-          if (objectIs(nextDeps[i], prevDeps[i])) {
+        for (var i2 = 0;i2 < prevDeps.length && i2 < nextDeps.length; i2++) {
+          if (objectIs(nextDeps[i2], prevDeps[i2])) {
             continue;
           }
           return false;
@@ -16641,8 +16641,8 @@ var require_react_dom_development = __commonJS((exports) => {
         {
           if ((revealOrder === "forwards" || revealOrder === "backwards") && children !== undefined && children !== null && children !== false) {
             if (isArray(children)) {
-              for (var i = 0;i < children.length; i++) {
-                if (!validateSuspenseListNestedChild(children[i], i)) {
+              for (var i2 = 0;i2 < children.length; i2++) {
+                if (!validateSuspenseListNestedChild(children[i2], i2)) {
                   return;
                 }
               }
@@ -18790,8 +18790,8 @@ var require_react_dom_development = __commonJS((exports) => {
       function recursivelyTraverseMutationEffects(root2, parentFiber, lanes) {
         var deletions = parentFiber.deletions;
         if (deletions !== null) {
-          for (var i = 0;i < deletions.length; i++) {
-            var childToDelete = deletions[i];
+          for (var i2 = 0;i2 < deletions.length; i2++) {
+            var childToDelete = deletions[i2];
             try {
               commitDeletionEffects(root2, parentFiber, childToDelete);
             } catch (error2) {
@@ -19289,8 +19289,8 @@ var require_react_dom_development = __commonJS((exports) => {
           if ((nextEffect.flags & ChildDeletion) !== NoFlags) {
             var deletions = fiber.deletions;
             if (deletions !== null) {
-              for (var i = 0;i < deletions.length; i++) {
-                var fiberToDelete = deletions[i];
+              for (var i2 = 0;i2 < deletions.length; i2++) {
+                var fiberToDelete = deletions[i2];
                 nextEffect = fiberToDelete;
                 commitPassiveUnmountEffectsInsideOfDeletedTree_begin(fiberToDelete, fiber);
               }
@@ -19905,8 +19905,8 @@ var require_react_dom_development = __commonJS((exports) => {
             if (updateQueue !== null) {
               var checks = updateQueue.stores;
               if (checks !== null) {
-                for (var i = 0;i < checks.length; i++) {
-                  var check = checks[i];
+                for (var i2 = 0;i2 < checks.length; i2++) {
+                  var check = checks[i2];
                   var getSnapshot = check.getSnapshot;
                   var renderedValue = check.value;
                   try {
@@ -20482,8 +20482,8 @@ var require_react_dom_development = __commonJS((exports) => {
         ensureRootIsScheduled(root2, now());
         if (recoverableErrors !== null) {
           var onRecoverableError = root2.onRecoverableError;
-          for (var i = 0;i < recoverableErrors.length; i++) {
-            var recoverableError = recoverableErrors[i];
+          for (var i2 = 0;i2 < recoverableErrors.length; i2++) {
+            var recoverableError = recoverableErrors[i2];
             var componentStack = recoverableError.stack;
             var digest = recoverableError.digest;
             onRecoverableError(recoverableError.value, {
@@ -20577,8 +20577,8 @@ var require_react_dom_development = __commonJS((exports) => {
         {
           var profilerEffects = pendingPassiveProfilerEffects;
           pendingPassiveProfilerEffects = [];
-          for (var i = 0;i < profilerEffects.length; i++) {
-            var _fiber = profilerEffects[i];
+          for (var i2 = 0;i2 < profilerEffects.length; i2++) {
+            var _fiber = profilerEffects[i2];
             commitPassiveEffectDurations(root2, _fiber);
           }
         }
@@ -22002,8 +22002,8 @@ var require_react_dom_development = __commonJS((exports) => {
             warn("copyWithRename() expects paths of the same length");
             return;
           } else {
-            for (var i = 0;i < newPath.length - 1; i++) {
-              if (oldPath[i] !== newPath[i]) {
+            for (var i2 = 0;i2 < newPath.length - 1; i2++) {
+              if (oldPath[i2] !== newPath[i2]) {
                 warn("copyWithRename() expects paths to be the same except for the deepest key");
                 return;
               }
@@ -22285,8 +22285,8 @@ var require_react_dom_development = __commonJS((exports) => {
         markContainerAsRoot(root2.current, container);
         listenToAllSupportedEvents(container);
         if (mutableSources) {
-          for (var i = 0;i < mutableSources.length; i++) {
-            var mutableSource = mutableSources[i];
+          for (var i2 = 0;i2 < mutableSources.length; i2++) {
+            var mutableSource = mutableSources[i2];
             registerMutableSourceForHydration(root2, mutableSource);
           }
         }
@@ -22626,25 +22626,25 @@ var require_client = __commonJS((exports) => {
   var m = __toESM(require_react_dom(), 1);
   if (false) {
   } else {
-    i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+    i2 = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     exports.createRoot = function(c, o) {
-      i.usingClientEntryPoint = true;
+      i2.usingClientEntryPoint = true;
       try {
         return m.createRoot(c, o);
       } finally {
-        i.usingClientEntryPoint = false;
+        i2.usingClientEntryPoint = false;
       }
     };
     exports.hydrateRoot = function(c, h, o) {
-      i.usingClientEntryPoint = true;
+      i2.usingClientEntryPoint = true;
       try {
         return m.hydrateRoot(c, h, o);
       } finally {
-        i.usingClientEntryPoint = false;
+        i2.usingClientEntryPoint = false;
       }
     };
   }
-  var i;
+  var i2;
 });
 
 // ../node_modules/react/cjs/react-jsx-dev-runtime.development.js
@@ -23363,8 +23363,8 @@ var require_react_jsx_dev_runtime_development2 = __commonJS((exports) => {
             return;
           }
           if (isArray(node)) {
-            for (var i = 0;i < node.length; i++) {
-              var child = node[i];
+            for (var i2 = 0;i2 < node.length; i2++) {
+              var child = node[i2];
               if (isValidElement(child)) {
                 validateExplicitKey(child, parentType);
               }
@@ -23419,8 +23419,8 @@ var require_react_jsx_dev_runtime_development2 = __commonJS((exports) => {
       function validateFragmentProps(fragment) {
         {
           var keys = Object.keys(fragment.props);
-          for (var i = 0;i < keys.length; i++) {
-            var key = keys[i];
+          for (var i2 = 0;i2 < keys.length; i2++) {
+            var key = keys[i2];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
               error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -23472,8 +23472,8 @@ var require_react_jsx_dev_runtime_development2 = __commonJS((exports) => {
             if (children !== undefined) {
               if (isStaticChildren) {
                 if (isArray(children)) {
-                  for (var i = 0;i < children.length; i++) {
-                    validateChildKeys(children[i], type);
+                  for (var i2 = 0;i2 < children.length; i2++) {
+                    validateChildKeys(children[i2], type);
                   }
                   if (Object.freeze) {
                     Object.freeze(children);
@@ -24004,8 +24004,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
           props.children = children;
         } else if (childrenLength > 1) {
           var childArray = Array(childrenLength);
-          for (var i = 0;i < childrenLength; i++) {
-            childArray[i] = arguments[i + 2];
+          for (var i2 = 0;i2 < childrenLength; i2++) {
+            childArray[i2] = arguments[i2 + 2];
           }
           {
             if (Object.freeze) {
@@ -24080,8 +24080,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
           props.children = children;
         } else if (childrenLength > 1) {
           var childArray = Array(childrenLength);
-          for (var i = 0;i < childrenLength; i++) {
-            childArray[i] = arguments[i + 2];
+          for (var i2 = 0;i2 < childrenLength; i2++) {
+            childArray[i2] = arguments[i2 + 2];
           }
           props.children = childArray;
         }
@@ -24092,7 +24092,7 @@ var require_react_development2 = __commonJS2((exports, module) => {
       }
       var SEPARATOR = ".";
       var SUBSEPARATOR = ":";
-      function escape(key) {
+      function escape2(key) {
         var escapeRegex = /[=:]/g;
         var escaperLookup = {
           "=": "=0",
@@ -24113,7 +24113,7 @@ var require_react_development2 = __commonJS2((exports, module) => {
           {
             checkKeyStringCoercion(element.key);
           }
-          return escape("" + element.key);
+          return escape2("" + element.key);
         }
         return index.toString(36);
       }
@@ -24169,9 +24169,9 @@ var require_react_development2 = __commonJS2((exports, module) => {
         var subtreeCount = 0;
         var nextNamePrefix = nameSoFar === "" ? SEPARATOR : nameSoFar + SUBSEPARATOR;
         if (isArray(children)) {
-          for (var i = 0;i < children.length; i++) {
-            child = children[i];
-            nextName = nextNamePrefix + getElementKey(child, i);
+          for (var i2 = 0;i2 < children.length; i2++) {
+            child = children[i2];
+            nextName = nextNamePrefix + getElementKey(child, i2);
             subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
           }
         } else {
@@ -24945,8 +24945,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
           return;
         }
         if (isArray(node)) {
-          for (var i = 0;i < node.length; i++) {
-            var child = node[i];
+          for (var i2 = 0;i2 < node.length; i2++) {
+            var child = node[i2];
             if (isValidElement(child)) {
               validateExplicitKey(child, parentType);
             }
@@ -25000,8 +25000,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
       function validateFragmentProps(fragment) {
         {
           var keys = Object.keys(fragment.props);
-          for (var i = 0;i < keys.length; i++) {
-            var key = keys[i];
+          for (var i2 = 0;i2 < keys.length; i2++) {
+            var key = keys[i2];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
               error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -25049,8 +25049,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
           return element;
         }
         if (validType) {
-          for (var i = 2;i < arguments.length; i++) {
-            validateChildKeys(arguments[i], type);
+          for (var i2 = 2;i2 < arguments.length; i2++) {
+            validateChildKeys(arguments[i2], type);
           }
         }
         if (type === REACT_FRAGMENT_TYPE) {
@@ -25084,8 +25084,8 @@ var require_react_development2 = __commonJS2((exports, module) => {
       }
       function cloneElementWithValidation(element, props, children) {
         var newElement = cloneElement.apply(this, arguments);
-        for (var i = 2;i < arguments.length; i++) {
-          validateChildKeys(arguments[i], newElement.type);
+        for (var i2 = 2;i2 < arguments.length; i2++) {
+          validateChildKeys(arguments[i2], newElement.type);
         }
         validatePropTypes(newElement);
         return newElement;
@@ -25262,17 +25262,17 @@ var require_react_development2 = __commonJS2((exports, module) => {
         {
           if (!isFlushing) {
             isFlushing = true;
-            var i = 0;
+            var i2 = 0;
             try {
-              for (;i < queue.length; i++) {
-                var callback = queue[i];
+              for (;i2 < queue.length; i2++) {
+                var callback = queue[i2];
                 do {
                   callback = callback(true);
                 } while (callback !== null);
               }
               queue.length = 0;
             } catch (error2) {
-              queue = queue.slice(i + 1);
+              queue = queue.slice(i2 + 1);
               throw error2;
             } finally {
               isFlushing = false;
@@ -26054,8 +26054,8 @@ var require_react_jsx_dev_runtime_development = __commonJS2((exports) => {
             return;
           }
           if (isArray(node)) {
-            for (var i = 0;i < node.length; i++) {
-              var child = node[i];
+            for (var i2 = 0;i2 < node.length; i2++) {
+              var child = node[i2];
               if (isValidElement(child)) {
                 validateExplicitKey(child, parentType);
               }
@@ -26110,8 +26110,8 @@ var require_react_jsx_dev_runtime_development = __commonJS2((exports) => {
       function validateFragmentProps(fragment) {
         {
           var keys = Object.keys(fragment.props);
-          for (var i = 0;i < keys.length; i++) {
-            var key = keys[i];
+          for (var i2 = 0;i2 < keys.length; i2++) {
+            var key = keys[i2];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
               error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
@@ -26163,8 +26163,8 @@ var require_react_jsx_dev_runtime_development = __commonJS2((exports) => {
             if (children !== undefined) {
               if (isStaticChildren) {
                 if (isArray(children)) {
-                  for (var i = 0;i < children.length; i++) {
-                    validateChildKeys(children[i], type);
+                  for (var i2 = 0;i2 < children.length; i2++) {
+                    validateChildKeys(children[i2], type);
                   }
                   if (Object.freeze) {
                     Object.freeze(children);
@@ -26224,23 +26224,23 @@ class h {
   warningLimit = 50000;
   #i = new Set;
   #f = [];
-  constructor(i, f) {
-    this.initCall = i;
+  constructor(i2, f) {
+    this.initCall = i2;
     this.onRecycle = f;
   }
-  create(...i) {
+  create(...i2) {
     const f = this.#f.pop();
     if (f)
-      return this.#i.add(f), this.initCall(f, ...i);
-    const v = this.initCall(undefined, ...i);
+      return this.#i.add(f), this.initCall(f, ...i2);
+    const v = this.initCall(undefined, ...i2);
     return this.#i.add(v), this.#v(), v;
   }
-  recycle(i) {
-    this.#i.delete(i), this.#h(i);
+  recycle(i2) {
+    this.#i.delete(i2), this.#h(i2);
   }
   recycleAll() {
-    for (let i of this.#i)
-      this.#h(i);
+    for (let i2 of this.#i)
+      this.#h(i2);
     this.#i.clear();
   }
   clear() {
@@ -26249,8 +26249,8 @@ class h {
   countObjectsInExistence() {
     return this.#i.size + this.#f.length;
   }
-  #h(i) {
-    this.#f.push(i), this.onRecycle?.(i);
+  #h(i2) {
+    this.#f.push(i2), this.onRecycle?.(i2);
   }
   #v() {
     if (this.countObjectsInExistence() === this.warningLimit)
@@ -26260,11 +26260,11 @@ class h {
 
 class C extends h {
   constructor() {
-    super((i) => {
-      if (!i)
+    super((i2) => {
+      if (!i2)
         return new Map;
-      return i;
-    }, (i) => i.clear());
+      return i2;
+    }, (i2) => i2.clear());
   }
 }
 var G = 1000;
@@ -26490,6 +26490,1633 @@ class ControlledMotor {
     return this.motor.time;
   }
 }
+var o = {};
+o.io = { GATEWAY_URI: "//newgrounds.io/gateway_v3.php" };
+o.io.events = {};
+o.io.call_validators = {};
+o.io.model = { checkStrictValue: function(t, e, n, r, s, a, c) {
+  if (r == "mixed")
+    return true;
+  if (n === null || typeof n == "undefined")
+    return true;
+  if (r && n.constructor === r)
+    return true;
+  if (r == Boolean && n.constructor === Number)
+    return true;
+  if (s && n.constructor === o.io.model[s])
+    return true;
+  if (n.constructor === Array && (a || c)) {
+    for (var h2 = 0;h2 < n.length; h2++)
+      this.checkStrictValue(t, e, n[h2], a, c, null, null);
+    return true;
+  }
+  if (t)
+    throw new Error("Illegal \'" + e + "\' value set in model " + t);
+  return false;
+} };
+o.io.events.OutputEvent = function(t, e, n) {
+  this.type = t, this.call = e, this.data = n, this.success = n && typeof (n.success != "undefined") ? n.success ? true : false : false, this.preventDefault = false;
+};
+o.io.events.OutputEvent.prototype.constructor = o.io.events.OutputEvent;
+o.io.events.SessionEvent = function(t) {
+  this.type = t, this.user = null, this.passport_url = null;
+};
+o.io.events.SessionEvent.USER_LOADED = "user-loaded";
+o.io.events.SessionEvent.SESSION_EXPIRED = "session-expired";
+o.io.events.SessionEvent.REQUEST_LOGIN = "request-login";
+o.io.events.SessionEvent.prototype.constructor = o.io.events.SessionEvent;
+o.io.events.EventDispatcher = function() {
+};
+o.io.events.EventDispatcher.prototype = { _event_listeners: {}, addEventListener: function(t, e) {
+  if (t.constructor !== String)
+    throw new Error("Event names must be a string format.");
+  if (e.constructor !== Function)
+    throw new Error("Event listeners must be functions.");
+  if (typeof this._event_listeners[t] == "undefined")
+    this._event_listeners[t] = [];
+  this._event_listeners[t].push(e);
+}, removeEventListener: function(t, e) {
+  if (typeof this._event_listeners[t] == "undefined")
+    return;
+  var n = -1;
+  for (i = 0;i < this._event_listeners[t].length; i++)
+    if (this._event_listeners[t][i] === e) {
+      n = i;
+      break;
+    }
+  if (n >= 0)
+    return this._event_listeners[t].splice(n, 1), true;
+  return false;
+}, removeAllEventListeners: function(t) {
+  if (typeof this._event_listeners[t] == "undefined")
+    return 0;
+  var e = this._event_listeners[t].length;
+  return this._event_listeners[t] = [], e;
+}, dispatchEvent: function(t) {
+  var e = false, n;
+  for (var r in o.io.events)
+    if (t.constructor === o.io.events[r]) {
+      e = true;
+      break;
+    }
+  if (!e)
+    throw new Error("Unsupported event object");
+  if (typeof this._event_listeners[t.type] == "undefined")
+    return false;
+  for (var s = 0;s < this._event_listeners[t.type].length; s++)
+    if (n = this._event_listeners[t.type][s], n(t) === false || t.preventDefault)
+      return true;
+  return true;
+} };
+o.io.events.EventDispatcher.prototype.constructor = o.io.events.EventDispatcher;
+o.io.core = function(t, e) {
+  var n, r, s, a, c = this, h2, x = new o.io.urlHelper;
+  if (x.getRequestQueryParam("ngio_session_id"))
+    r = x.getRequestQueryParam("ngio_session_id");
+  if (Object.defineProperty(this, "app_id", { get: function() {
+    return n;
+  } }), Object.defineProperty(this, "user", { get: function() {
+    return this.getCurrentUser();
+  } }), Object.defineProperty(this, "session_id", { set: function(f) {
+    if (f && typeof f != "string")
+      throw new Error("\'session_id\' must be a string value.");
+    r = f ? f : null;
+  }, get: function() {
+    return r ? r : null;
+  } }), Object.defineProperty(this, "debug", { set: function(f) {
+    a = f ? true : false;
+  }, get: function() {
+    return a;
+  } }), !t)
+    throw new Error("Missing required \'app_id\' in Newgrounds.io.core constructor");
+  if (typeof t != "string")
+    throw new Error("\'app_id\' must be a string value in Newgrounds.io.core constructor");
+  if (n = t, e)
+    h2 = b.enc.Base64.parse(e);
+  else
+    console.warn("You did not set an encryption key. Some calls may not work without this.");
+  var d = "Newgrounds-io-app_session-" + n.split(":").join("-");
+  function E() {
+    if (typeof localStorage != "undefined" && localStorage && localStorage.getItem.constructor == Function)
+      return true;
+    return console.warn("localStorage unavailable. Are you running from a web server?"), false;
+  }
+  function g() {
+    if (!E())
+      return null;
+    var f = localStorage.getItem(d);
+    return f ? f : null;
+  }
+  function w(f) {
+    if (!E())
+      return null;
+    localStorage.setItem(d, f);
+  }
+  function l2() {
+    if (!E())
+      return null;
+    localStorage.removeItem(d);
+  }
+  if (!r && g())
+    r = g();
+  this.addEventListener("App.endSession", function(f) {
+    c.session_id = null, l2();
+  }), this.addEventListener("App.startSession", function(f) {
+    if (f.success)
+      c.session_id = f.data.session.id;
+  }), this.addEventListener("App.checkSession", (f) => {
+    if (f.success) {
+      if (f.data.session.expired)
+        l2(), this.session_id = null;
+      else if (f.data.session.remember)
+        w(f.data.session.id);
+    } else
+      this.session_id = null, l2();
+  }), this._encryptCall = function(f) {
+    if (!f || !f.constructor == o.io.model.call_model)
+      throw new Error("Attempted to encrypt a non \'call\' object");
+    var u = b.lib.WordArray.random(16), p = b.AES.encrypt(JSON.stringify(f.toObject()), h2, { iv: u }), _ = b.enc.Base64.stringify(u.concat(p.ciphertext));
+    return f.secure = _, f.parameters = null, f;
+  };
+};
+o.io.core.prototype = { _session_loader: null, _call_queue: [], _event_listeners: {}, addEventListener: o.io.events.EventDispatcher.prototype.addEventListener, removeEventListener: o.io.events.EventDispatcher.prototype.removeEventListener, removeAllEventListeners: o.io.events.EventDispatcher.prototype.removeAllEventListeners, dispatchEvent: o.io.events.EventDispatcher.prototype.dispatchEvent, getSessionLoader: function() {
+  if (this._session_loader == null)
+    this._session_loader = new o.io.SessionLoader(this);
+  return this._session_loader;
+}, getSession: function() {
+  return this.getSessionLoader().session;
+}, getCurrentUser: function() {
+  var t = this.getSessionLoader();
+  if (t.session)
+    return t.session.user;
+  return null;
+}, getLoginError: function() {
+  return this.getSessionLoader().last_error;
+}, getValidSession: function(t, e) {
+  this.getSessionLoader().getValidSession(t, e);
+}, requestLogin: function(t, e, n, r) {
+  if (!t || t.constructor !== Function)
+    throw "Missing required callback for \'on_logged_in\'.";
+  if (!e || e.constructor !== Function)
+    throw "Missing required callback for \'on_login_failed\'.";
+  var s = this, a = this.getSessionLoader(), c;
+  function h2() {
+    if (c)
+      clearInterval(c);
+    s.removeEventListener("cancelLoginRequest", x), a.closePassport();
+  }
+  function x() {
+    n && n.constructor === Function ? n.call(r) : e.call(r), h2();
+  }
+  if (s.addEventListener("cancelLoginRequest", x), s.getCurrentUser())
+    t.call(r);
+  else
+    a.loadPassport(), c = setInterval(function() {
+      a.checkSession(function(d) {
+        if (!d || d.expired)
+          if (a.last_error.code == 111)
+            x();
+          else
+            h2(), e.call(r);
+        else if (d.user)
+          h2(), t.call(r);
+      });
+    }, 3000);
+}, cancelLoginRequest: function() {
+  event = new o.io.events.OutputEvent("cancelLoginRequest", null, null), this.dispatchEvent(event);
+}, logOut: function(t, e) {
+  this.getSessionLoader().endSession(t, e);
+}, queueComponent: function(t, e, n, r) {
+  if (e && e.constructor === Function && !n)
+    n = e, e = null;
+  var s = new o.io.model.call(this);
+  if (s.component = t, typeof e != "undefined")
+    s.parameters = e;
+  this._validateCall(s), this._call_queue.push([s, n, r]);
+}, executeQueue: function() {
+  var t = [], e = [], n = [];
+  for (var r = 0;r < this._call_queue.length; r++)
+    t.push(this._call_queue[r][0]), e.push(this._call_queue[r][1]), n.push(this._call_queue[r][2]);
+  this._doCall(t, e, n), this._call_queue = [];
+}, callComponent: function(t, e, n, r) {
+  if (e.constructor === Function && !n)
+    n = e, e = null;
+  var s = new o.io.model.call(this);
+  if (s.component = t, typeof e != "undefined")
+    s.parameters = e;
+  this._validateCall(s), this._doCall(s, n, r);
+}, _doCallback: function(t, e, n, r) {
+  var s, a, c, h2, x, d = { success: false, error: { code: 0, message: "Unexpected Server Response" } };
+  if (typeof n == "undefined")
+    n = null;
+  if (t.constructor === Array && e && e.constructor === Array) {
+    for (s = 0;s < t.length; s++)
+      a = !n || typeof n[s] == "undefined" ? d : n[s], c = typeof e[s] == "undefined" ? null : e[s], this._doCallback(t[s], c, a, r[s]);
+    return;
+  }
+  if (n && typeof n.data != "undefined") {
+    var E;
+    if (n.data.constructor === Array) {
+      E = [];
+      for (s = 0;s < n.data.length; s++)
+        E.push(this._formatResults(n.component, n.data[s]));
+    } else
+      E = this._formatResults(n.component, n.data);
+    n.data = E;
+  }
+  var g;
+  if (n)
+    if (typeof n.data != "undefined")
+      g = n.data;
+    else
+      console.warn("Received empty data from \'" + t.component + "\'."), g = null;
+  else
+    g = d;
+  var w;
+  if (g.constructor === Array)
+    for (s = 0;s < g.length; s++)
+      w = new o.io.events.OutputEvent(t.component, t[s], g[s]), this.dispatchEvent(w);
+  else
+    w = new o.io.events.OutputEvent(t.component, t, g), this.dispatchEvent(w);
+  if (e && e.constructor === Function)
+    e.call(r, g);
+}, _formatResults: function(t, e) {
+  var n, r, s, a, c, h2 = null;
+  if (typeof e.success != "undefined" && e.success)
+    h2 = o.io.call_validators.getValidator(t);
+  if (!h2)
+    return e;
+  var x = h2.returns;
+  for (r in x) {
+    if (typeof e[r] == "undefined" && e.success !== false) {
+      console.warn("Newgrounds.io server failed to return expected \'" + r + "\' in \'" + t + "\' data.");
+      continue;
+    }
+    if (typeof x[r].array != "undefined") {
+      if (typeof x[r].array.object != "undefined")
+        c = x[r].array.object;
+      else
+        c = x[r].array;
+      if (typeof o.io.model[c] == "undefined") {
+        console.warn("Received unsupported model \'" + c + "\' from \'" + t + "\'.");
+        continue;
+      }
+      if (e[r].constructor !== Array) {
+        console.warn("Expected array<" + c + "> value for \'" + r + "\' in \'" + t + "\' data, got " + typeof e[r]);
+        continue;
+      }
+      a = [];
+      for (s = 0;s < e[r].length; s++)
+        n = new o.io.model[c](this), n.fromObject(e[r][s]), a.push(n);
+      e[r] = a;
+    } else if (typeof x[r].object != "undefined" && e[r]) {
+      if (c = x[r].object, typeof o.io.model[c] == "undefined") {
+        console.warn("Received unsupported model \'" + c + "\' from \'" + t + "\'.");
+        continue;
+      }
+      n = new o.io.model[c](this), n.fromObject(e[r]), e[r] = n;
+    }
+  }
+  return e;
+}, _doCall: function(t, e, n) {
+  if (!this.app_id)
+    throw new Error("Attempted to call Newgrounds.io server without setting an app_id in Newgrounds.io.core instance.");
+  var r, s = false, a = this;
+  function c(_) {
+    var O = o.io.call_validators.getValidator(_.component);
+    if (O.hasOwnProperty("redirect") && O.redirect) {
+      var A = _.parameters;
+      if (!A || !A.hasOwnProperty("redirect") || A.redirect)
+        return true;
+    }
+    return false;
+  }
+  if (t.constructor === Array) {
+    r = [];
+    for (i = 0;i < t.length; i++) {
+      if (c(t[i]))
+        throw new Error("Loader components can not be called in an array without a redirect=false parameter.");
+      r.push(t[i].toObject());
+    }
+  } else
+    r = t.toObject(), s = c(t);
+  var h2 = { app_id: this.app_id, session_id: this.session_id, call: r };
+  if (this.debug)
+    h2.debug = 1;
+  if (s) {
+    var x = { success: true, app_id: this.app_id, result: { component: t.component, data: { success: true } } }, d = document.createElement("form");
+    d.action = o.io.GATEWAY_URI, d.target = "_blank", d.method = "POST";
+    var E = document.createElement("input");
+    E.type = "hidden", E.name = "input", d.appendChild(E), document.body.appendChild(d), E.value = JSON.stringify(h2), d.submit(), document.body.removeChild(d);
+  } else {
+    var g = new XMLHttpRequest, w, l2 = null, f = this;
+    g.onreadystatechange = function() {
+      if (g.readyState == 4) {
+        var _;
+        try {
+          _ = JSON.parse(g.responseText).result;
+        } catch (O) {
+        }
+        f._doCallback(t, e, _, n);
+      }
+    };
+    var u = new FormData, p = typeof Array.prototype.toJSON != "undefined" ? Array.prototype.toJSON : null;
+    if (p)
+      delete Array.prototype.toJSON;
+    if (u.append("input", JSON.stringify(h2)), p)
+      Array.prototype.toJSON = p;
+    g.open("POST", o.io.GATEWAY_URI, true), g.send(u);
+  }
+}, _doValidateCall: function(t, e) {
+  var n, r, s, a, c = o.io.call_validators.getValidator(t);
+  if (!c)
+    throw new Error("\'" + t + "\' is not a valid server component.");
+  if (c.require_session && !this.session_id)
+    throw new Error("\'" + t + "\' requires a session id");
+  if (c.import && c.import.length > 0)
+    for (n = 0;n < c.import.length; n++)
+      r = c.import[n].split("."), this._doValidateCall(r[0], r[1], e);
+  var h2;
+  for (s in c.params) {
+    if (a = c.params[s], h2 = e && typeof e[s] != "undefined" ? e[s] : null, !h2 && a.extract_from && a.extract_from.alias)
+      h2 = e[a.extract_from.alias];
+    if (h2 === null) {
+      if (a.required)
+        throw new Error("Missing required parameter for \'" + t + "\': " + s);
+      continue;
+    }
+    if (a.extract_from && h2.constructor === o.io.model[a.extract_from.object])
+      h2 = h2[a.extract_from.property];
+    if (!o.io.model.checkStrictValue(null, s, h2, a.type, null, null, null))
+      throw new Error("Illegal value for \'" + s + "\' parameter of \'" + t + "\': " + h2);
+  }
+}, _validateCall: function(t) {
+  var e;
+  if (t.constructor === Array) {
+    var n = [];
+    for (e = 0;e < t.length; e++)
+      n.push(this._validateCall(t[e]));
+    return n;
+  } else if (t.constructor !== o.io.model.call)
+    throw new Error("Unexpected \'call_model\' value. Expected Newgrounds.io.model.call instance.");
+  var { component: r, parameters: s, echo: a } = t;
+  if (s && s.constructor === Array)
+    for (e = 0;e < s.length; e++)
+      this._doValidateCall(r, s[e]);
+  else
+    this._doValidateCall(r, s);
+  var c = { component: t.component }, h2 = o.io.call_validators.getValidator(t.component);
+  if (typeof s != "undefined")
+    if (h2.secure) {
+      var x = this._encryptCall(t);
+      c.secure = x.secure;
+    } else
+      c.parameters = s;
+  if (typeof a != "undefined")
+    c.echo = a;
+  return c;
+} };
+o.io.core.prototype.constructor = o.io.core;
+o.io.core.instance_id = 0;
+o.io.core.getNextInstanceID = function() {
+  return o.io.core.instance_id++, o.io.core.instance_id;
+};
+o.io.urlHelper = function() {
+  var t = window.location.href, e = {}, n = t.split("?").pop();
+  if (n) {
+    var r = n.split("&"), s;
+    for (var a = 0;a < r.length; a++)
+      s = r[a].split("="), e[s[0]] = s[1];
+  }
+  this.getRequestQueryParam = function(c, h2) {
+    if (typeof h2 == "undefined")
+      h2 = null;
+    return typeof e[c] == "undefined" ? h2 : e[c];
+  };
+};
+o.io.model.call = function(t, e) {
+  var n, r, s, a;
+  this.__property_names = ["component", "echo", "parameters", "secure"], this.__classname = "Newgrounds.io.model.call", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "component", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "component", c, String, null, null, null), n = c;
+  } });
+  var r;
+  Object.defineProperty(this, "echo", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(c) {
+    r = c;
+  } });
+  var s;
+  Object.defineProperty(this, "parameters", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "parameters", c, Object, null, Object, null), s = c;
+  } });
+  var a;
+  if (Object.defineProperty(this, "secure", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "secure", c, String, null, null, null), a = c;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.call.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.call.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.call.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.call.prototype.constructor = o.io.model.call;
+o.io.model.debug = function(t, e) {
+  var n, r;
+  this.__property_names = ["exec_time", "input"], this.__classname = "Newgrounds.io.model.debug", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "exec_time", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "exec_time", s, String, null, null, null), n = s;
+  } });
+  var r;
+  if (Object.defineProperty(this, "input", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "input", s, null, "input", null, null), r = s;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.debug.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.debug.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.debug.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "input" && e)
+      e = new o.io.model.input(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.debug.prototype.constructor = o.io.model.debug;
+o.io.model.error = function(t, e) {
+  var n, r;
+  this.__property_names = ["code", "message"], this.__classname = "Newgrounds.io.model.error", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "code", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "code", s, Number, null, null, null), n = s;
+  } });
+  var r;
+  if (Object.defineProperty(this, "message", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "message", s, String, null, null, null), r = s;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.error.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.error.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.error.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.error.get = function(t, e) {
+  var n = new o.io.model.error;
+  return n.message = t ? t : "Unknown Error", n.code = e ? e : 0, n;
+};
+o.io.model.error.MISSING_INPUT = 100;
+o.io.model.error.INVALID_INPUT = 101;
+o.io.model.error.MISSING_PARAMETER = 102;
+o.io.model.error.INVALID_PARAMETER = 103;
+o.io.model.error.EXPIRED_SESSION = 104;
+o.io.model.error.DUPLICATE_SESSION = 105;
+o.io.model.error.MAX_CONNECTIONS_EXCEEDED = 106;
+o.io.model.error.MAX_CALLS_EXCEEDED = 107;
+o.io.model.error.MEMORY_EXCEEDED = 108;
+o.io.model.error.TIMED_OUT = 109;
+o.io.model.error.LOGIN_REQUIRED = 110;
+o.io.model.error.INVALID_APP_ID = 200;
+o.io.model.error.INVALID_ENCRYPTION = 201;
+o.io.model.error.INVALID_MEDAL_ID = 202;
+o.io.model.error.INVALID_SCOREBOARD_ID = 203;
+o.io.model.error.INVALID_SAVEGROUP_ID = 204;
+o.io.model.error.SERVER_UNAVAILABLE = 504;
+o.io.model.error.prototype.constructor = o.io.model.error;
+o.io.model.input = function(t, e) {
+  var n, r, s, a, c;
+  this.__property_names = ["app_id", "call", "debug", "echo", "session_id"], this.__classname = "Newgrounds.io.model.input", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "app_id", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "app_id", h2, String, null, null, null), n = h2;
+  } });
+  var r;
+  Object.defineProperty(this, "call", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "call", h2, null, "call", null, "call"), r = h2;
+  } });
+  var s;
+  Object.defineProperty(this, "debug", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "debug", h2, Boolean, null, null, null), s = h2;
+  } });
+  var a;
+  Object.defineProperty(this, "echo", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(h2) {
+    a = h2;
+  } });
+  var c;
+  if (Object.defineProperty(this, "session_id", { get: function() {
+    return typeof c == "undefined" ? null : c;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "session_id", h2, String, null, null, null), c = h2;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.input.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.input.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.input.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "call" && e)
+      e = new o.io.model.call(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.input.prototype.constructor = o.io.model.input;
+o.io.model.medal = function(t, e) {
+  var n, r, s, a, c, h2, x, d;
+  this.__property_names = ["description", "difficulty", "icon", "id", "name", "secret", "unlocked", "value"], this.__classname = "Newgrounds.io.model.medal", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "description", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "description", E, String, null, null, null), n = E;
+  } });
+  var r;
+  Object.defineProperty(this, "difficulty", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "difficulty", E, Number, null, null, null), r = E;
+  } });
+  var s;
+  Object.defineProperty(this, "icon", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "icon", E, String, null, null, null), s = E;
+  } });
+  var a;
+  Object.defineProperty(this, "id", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "id", E, Number, null, null, null), a = E;
+  } });
+  var c;
+  Object.defineProperty(this, "name", { get: function() {
+    return typeof c == "undefined" ? null : c;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "name", E, String, null, null, null), c = E;
+  } });
+  var h2;
+  Object.defineProperty(this, "secret", { get: function() {
+    return typeof h2 == "undefined" ? null : h2;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "secret", E, Boolean, null, null, null), h2 = E;
+  } });
+  var x;
+  Object.defineProperty(this, "unlocked", { get: function() {
+    return typeof x == "undefined" ? null : x;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "unlocked", E, Boolean, null, null, null), x = E;
+  } });
+  var d;
+  if (Object.defineProperty(this, "value", { get: function() {
+    return typeof d == "undefined" ? null : d;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "value", E, Number, null, null, null), d = E;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.medal.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.medal.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.medal.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.medal.prototype.unlock = function(t) {
+  var e = this;
+  if (this._has_ngio_user())
+    this.__ngio.callComponent("Medal.unlock", { id: this.id }, function(s) {
+      if (s.success)
+        this.unlocked = true;
+      t(s);
+    });
+  else if (typeof t == "function") {
+    var n = o.io.model.error.get("This function requires a valid user session.", o.io.model.error.LOGIN_REQUIRED), r = { success: false, error: n };
+    t(r);
+  }
+};
+o.io.model.medal.prototype.constructor = o.io.model.medal;
+o.io.model.output = function(t, e) {
+  var n, r, s, a, c, h2, x, d;
+  this.__property_names = ["api_version", "app_id", "debug", "echo", "error", "help_url", "result", "success"], this.__classname = "Newgrounds.io.model.output", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "api_version", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "api_version", E, String, null, null, null), n = E;
+  } });
+  var r;
+  Object.defineProperty(this, "app_id", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "app_id", E, String, null, null, null), r = E;
+  } });
+  var s;
+  Object.defineProperty(this, "debug", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "debug", E, null, "debug", null, null), s = E;
+  } });
+  var a;
+  Object.defineProperty(this, "echo", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(E) {
+    a = E;
+  } });
+  var c;
+  Object.defineProperty(this, "error", { get: function() {
+    return typeof c == "undefined" ? null : c;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "error", E, null, "error", null, null), c = E;
+  } });
+  var h2;
+  Object.defineProperty(this, "help_url", { get: function() {
+    return typeof h2 == "undefined" ? null : h2;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "help_url", E, String, null, null, null), h2 = E;
+  } });
+  var x;
+  Object.defineProperty(this, "result", { get: function() {
+    return typeof x == "undefined" ? null : x;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "result", E, null, "result", null, "result"), x = E;
+  } });
+  var d;
+  if (Object.defineProperty(this, "success", { get: function() {
+    return typeof d == "undefined" ? null : d;
+  }, set: function(E) {
+    o.io.model.checkStrictValue(this.__classname, "success", E, Boolean, null, null, null), d = E;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.output.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.output.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.output.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "debug" && e)
+      e = new o.io.model.debug(this.__ngio, e);
+    else if (this.__property_names[r] == "error" && e)
+      e = new o.io.model.error(this.__ngio, e);
+    else if (this.__property_names[r] == "result" && e)
+      e = new o.io.model.result(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.output.prototype.constructor = o.io.model.output;
+o.io.model.result = function(t, e) {
+  var n, r, s;
+  this.__property_names = ["component", "data", "echo"], this.__classname = "Newgrounds.io.model.result", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "component", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(a) {
+    o.io.model.checkStrictValue(this.__classname, "component", a, String, null, null, null), n = a;
+  } });
+  var r;
+  Object.defineProperty(this, "data", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(a) {
+    o.io.model.checkStrictValue(this.__classname, "data", a, Object, null, Object, null), r = a;
+  } });
+  var s;
+  if (Object.defineProperty(this, "echo", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(a) {
+    s = a;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.result.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.result.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.result.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.result.prototype.constructor = o.io.model.result;
+o.io.model.score = function(t, e) {
+  var n, r, s, a;
+  this.__property_names = ["formatted_value", "tag", "user", "value"], this.__classname = "Newgrounds.io.model.score", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "formatted_value", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "formatted_value", c, String, null, null, null), n = c;
+  } });
+  var r;
+  Object.defineProperty(this, "tag", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "tag", c, String, null, null, null), r = c;
+  } });
+  var s;
+  Object.defineProperty(this, "user", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "user", c, null, "user", null, null), s = c;
+  } });
+  var a;
+  if (Object.defineProperty(this, "value", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "value", c, Number, null, null, null), a = c;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.score.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.score.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.score.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "user" && e)
+      e = new o.io.model.user(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.score.prototype.constructor = o.io.model.score;
+o.io.model.scoreboard = function(t, e) {
+  var n, r;
+  this.__property_names = ["id", "name"], this.__classname = "Newgrounds.io.model.scoreboard", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "id", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "id", s, Number, null, null, null), n = s;
+  } });
+  var r;
+  if (Object.defineProperty(this, "name", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(s) {
+    o.io.model.checkStrictValue(this.__classname, "name", s, String, null, null, null), r = s;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.scoreboard.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.scoreboard.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.scoreboard.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.scoreboard.prototype.postScore = function(t, e, n) {
+  var r = this;
+  if (typeof e == "function" && !n)
+    n = e, e = null;
+  if (!e)
+    e = null;
+  if (this._has_ngio_user())
+    this.__ngio.callComponent("ScoreBoard.postScore", { id: this.id, value: t, tag: e }, function(c) {
+      n(c);
+    });
+  else if (typeof n == "function") {
+    var s = o.io.model.error.get("This function requires a valid user session.", o.io.model.error.LOGIN_REQUIRED), a = { success: false, error: s };
+    n(a);
+  }
+};
+o.io.model.scoreboard.prototype.constructor = o.io.model.scoreboard;
+o.io.model.session = function(t, e) {
+  var n, r, s, a, c;
+  this.__property_names = ["expired", "id", "passport_url", "remember", "user"], this.__classname = "Newgrounds.io.model.session", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "expired", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "expired", h2, Boolean, null, null, null), n = h2;
+  } });
+  var r;
+  Object.defineProperty(this, "id", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "id", h2, String, null, null, null), r = h2;
+  } });
+  var s;
+  Object.defineProperty(this, "passport_url", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "passport_url", h2, String, null, null, null), s = h2;
+  } });
+  var a;
+  Object.defineProperty(this, "remember", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "remember", h2, Boolean, null, null, null), a = h2;
+  } });
+  var c;
+  if (Object.defineProperty(this, "user", { get: function() {
+    return typeof c == "undefined" ? null : c;
+  }, set: function(h2) {
+    o.io.model.checkStrictValue(this.__classname, "user", h2, null, "user", null, null), c = h2;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.session.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.session.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.session.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "user" && e)
+      e = new o.io.model.user(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.session.prototype.constructor = o.io.model.session;
+o.io.model.user = function(t, e) {
+  var n, r, s, a;
+  this.__property_names = ["icons", "id", "name", "supporter"], this.__classname = "Newgrounds.io.model.user", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "icons", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "icons", c, null, "usericons", null, null), n = c;
+  } });
+  var r;
+  Object.defineProperty(this, "id", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "id", c, Number, null, null, null), r = c;
+  } });
+  var s;
+  Object.defineProperty(this, "name", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "name", c, String, null, null, null), s = c;
+  } });
+  var a;
+  if (Object.defineProperty(this, "supporter", { get: function() {
+    return typeof a == "undefined" ? null : a;
+  }, set: function(c) {
+    o.io.model.checkStrictValue(this.__classname, "supporter", c, Boolean, null, null, null), a = c;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.user.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.user.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.user.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++) {
+    if (e = t[this.__property_names[r]], this.__property_names[r] == "icons" && e)
+      e = new o.io.model.usericons(this.__ngio, e);
+    this[this.__property_names[r]] = e;
+  }
+};
+o.io.model.user.prototype.constructor = o.io.model.user;
+o.io.model.usericons = function(t, e) {
+  var n, r, s;
+  this.__property_names = ["large", "medium", "small"], this.__classname = "Newgrounds.io.model.usericons", this.__ngio = t;
+  var n;
+  Object.defineProperty(this, "large", { get: function() {
+    return typeof n == "undefined" ? null : n;
+  }, set: function(a) {
+    o.io.model.checkStrictValue(this.__classname, "large", a, String, null, null, null), n = a;
+  } });
+  var r;
+  Object.defineProperty(this, "medium", { get: function() {
+    return typeof r == "undefined" ? null : r;
+  }, set: function(a) {
+    o.io.model.checkStrictValue(this.__classname, "medium", a, String, null, null, null), r = a;
+  } });
+  var s;
+  if (Object.defineProperty(this, "small", { get: function() {
+    return typeof s == "undefined" ? null : s;
+  }, set: function(a) {
+    o.io.model.checkStrictValue(this.__classname, "small", a, String, null, null, null), s = a;
+  } }), e)
+    this.fromObject(e);
+};
+o.io.model.usericons.prototype._has_ngio_user = function() {
+  return this.__ngio && this.__ngio.user;
+};
+o.io.model.usericons.prototype.toObject = function() {
+  var t = {};
+  for (var e = 0;e < this.__property_names.length; e++)
+    if (typeof this[this.__property_names[e]] != "undefined")
+      t[this.__property_names[e]] = this[this.__property_names[e]];
+  return t;
+};
+o.io.model.usericons.prototype.fromObject = function(t) {
+  var e, n;
+  for (var r = 0;r < this.__property_names.length; r++)
+    e = t[this.__property_names[r]], this[this.__property_names[r]] = e;
+};
+o.io.model.usericons.prototype.constructor = o.io.model.usericons;
+o.io.call_validators.getValidator = function(t) {
+  var e = t.split("."), n = e[0], r = e[1], s = o.io.call_validators[n] && o.io.call_validators[n][r] ? o.io.call_validators[n][r] : null;
+  return s;
+};
+o.io.call_validators.App = { checkSession: { require_session: true, secure: false, redirect: false, import: false, params: {}, returns: { session: { object: "session", description: null } } }, endSession: { require_session: true, secure: false, redirect: false, import: false, params: {}, returns: {} }, getCurrentVersion: { require_session: false, secure: false, redirect: false, import: false, params: { version: { type: String, extract_from: null, required: null, description: 'The version number (in "X.Y.Z" format) of the client-side app. (default = "0.0.0")' } }, returns: {} }, getHostLicense: { require_session: false, secure: false, redirect: false, import: false, params: { host: { type: String, extract_from: null, required: null, description: "The host domain to check (ei, somesite.com)." } }, returns: {} }, logView: { require_session: false, secure: false, redirect: false, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Examples: "www.somesite.com", "localHost"' } }, returns: {} }, startSession: { require_session: false, secure: false, redirect: false, import: false, params: { force: { type: Boolean, extract_from: null, required: null, description: "If true, will create a new session even if the user already has an existing one.\n\nNote: Any previous session ids will no longer be valid if this is used." } }, returns: { session: { object: "session", description: null } } } };
+o.io.call_validators.Event = { logEvent: { require_session: false, secure: false, redirect: false, import: false, params: { event_name: { type: String, extract_from: null, required: true, description: "The name of your custom event as defined in your Referrals & Events settings." }, host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "newgrounds.com", "localHost"' } }, returns: {} } };
+o.io.call_validators.Gateway = { getDatetime: { require_session: false, secure: false, redirect: false, import: false, params: {}, returns: {} }, getVersion: { require_session: false, secure: false, redirect: false, import: false, params: {}, returns: {} }, ping: { require_session: false, secure: false, redirect: false, import: false, params: {}, returns: {} } };
+o.io.call_validators.Loader = { loadAuthorUrl: { require_session: false, secure: false, redirect: true, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "www.somesite.com", "localHost"' }, redirect: { type: Boolean, extract_from: null, required: false, description: "Set this to false to get a JSON response containing the URL instead of doing an actual redirect." } }, returns: {} }, loadMoreGames: { require_session: false, secure: false, redirect: true, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "www.somesite.com", "localHost"' }, redirect: { type: Boolean, extract_from: null, required: false, description: "Set this to false to get a JSON response containing the URL instead of doing an actual redirect." } }, returns: {} }, loadNewgrounds: { require_session: false, secure: false, redirect: true, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "www.somesite.com", "localHost"' }, redirect: { type: Boolean, extract_from: null, required: false, description: "Set this to false to get a JSON response containing the URL instead of doing an actual redirect." } }, returns: {} }, loadOfficialUrl: { require_session: false, secure: false, redirect: true, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "www.somesite.com", "localHost"' }, redirect: { type: Boolean, extract_from: null, required: false, description: "Set this to false to get a JSON response containing the URL instead of doing an actual redirect." } }, returns: {} }, loadReferral: { require_session: false, secure: false, redirect: true, import: false, params: { host: { type: String, extract_from: null, required: true, description: 'The domain hosting your app. Example: "www.somesite.com", "localHost"' }, redirect: { type: Boolean, extract_from: null, required: false, description: "Set this to false to get a JSON response containing the URL instead of doing an actual redirect." }, referral_name: { type: String, extract_from: null, required: true, description: 'The name of the referral (as defined in your "Referrals & Events" settings).' } }, returns: {} } };
+o.io.call_validators.Medal = { getList: { require_session: false, secure: false, redirect: false, import: false, params: {}, returns: { medals: { array: { object: "medal" }, description: "An array of medal objects." } } }, unlock: { require_session: true, secure: true, redirect: false, import: false, params: { id: { type: Number, extract_from: { object: "medal", alias: "medal", property: "id" }, required: true, description: "The numeric ID of the medal to unlock." } }, returns: { medal: { object: "medal", description: "The #medal that was unlocked." } } } };
+o.io.call_validators.ScoreBoard = { getBoards: { require_session: false, secure: false, redirect: false, import: false, params: {}, returns: { scoreboards: { array: { object: "scoreboard" }, description: "An array of #scoreboard objects." } } }, getScores: { require_session: false, secure: false, redirect: false, import: false, params: { id: { type: Number, extract_from: { object: "scoreboard", alias: "scoreboard", property: "id" }, required: true, description: "The numeric ID of the scoreboard." }, limit: { type: Number, extract_from: null, required: null, description: "An integer indicating the number of scores to include in the list. Default = 10." }, period: { type: String, extract_from: null, required: null, description: "The time-frame to pull scores from (see notes for acceptable values)." }, skip: { type: Number, extract_from: null, required: null, description: "An integer indicating the number of scores to skip before starting the list. Default = 0." }, social: { type: Boolean, extract_from: null, required: null, description: "If set to true, only social scores will be loaded (scores by the user and their friends). This param will be ignored if there is no valid session id and the \'user\' param is absent." }, tag: { type: String, extract_from: null, required: null, description: "A tag to filter results by." }, user: { type: "mixed", extract_from: null, required: null, description: "A user\'s ID or name.  If \'social\' is true, this user and their friends will be included. Otherwise, only scores for this user will be loaded. If this param is missing and there is a valid session id, that user will be used by default." } }, returns: { scoreboard: { object: "scoreboard", description: "The #scoreboard being queried." }, scores: { array: { object: "score" }, description: "An array of #score objects." }, user: { object: "user", description: "The #user the score list is associated with (either as defined in the \'user\' param, or extracted from the current session when \'social\' is set to true)" } } }, postScore: { require_session: true, secure: true, redirect: false, import: false, params: { id: { type: Number, extract_from: { object: "scoreboard", alias: "scoreboard", property: "id" }, required: true, description: "The numeric ID of the scoreboard." }, tag: { type: String, extract_from: null, required: null, description: "An optional tag that can be used to filter scores via ScoreBoard.getScores" }, value: { type: Number, extract_from: null, required: true, description: "The int value of the score." } }, returns: { score: { object: "score", description: "The #score that was posted to the board." }, scoreboard: { object: "scoreboard", description: "The #scoreboard that was posted to." } } } };
+o.io.SessionLoader = function(t) {
+  if (!t || t.constructor !== o.io.core)
+    throw new Error("\'ngio\' must be a \'Newgrounds.io.core\' instance.");
+  this.__ngio = t;
+  var e = null;
+  Object.defineProperty(this, "session", { set: function(n) {
+    if (n && !n.constructor === o.io.model.session)
+      throw new Error("\'session\' must be a \'Newgrounds.io.model.session\' instance.");
+    e = n;
+  }, get: function() {
+    return e;
+  } });
+};
+o.io.SessionLoader.prototype = { _event_listeners: {}, last_error: null, passport_window: null, addEventListener: o.io.events.EventDispatcher.prototype.addEventListener, removeEventListener: o.io.events.EventDispatcher.prototype.removeEventListener, removeAllEventListeners: o.io.events.EventDispatcher.prototype.removeAllEventListeners, dispatchEvent: o.io.events.EventDispatcher.prototype.dispatchEvent, getValidSession: function(t, e) {
+  var n = this;
+  n.checkSession(function(r) {
+    if (!r || r.expired)
+      n.startSession(t, e);
+    else
+      t.call(e, r);
+  });
+}, startSession: function(t, e) {
+  var n = new o.io.events.SessionEvent, r = this;
+  this.__ngio.callComponent("App.startSession", function(s) {
+    if (!s.success || !s.session) {
+      if (s.error)
+        r.last_error = s.error;
+      else
+        r.last_error = new o.io.model.error, r.last_error.message = "Unexpected Error";
+      n.type = o.io.events.SessionEvent.SESSION_EXPIRED, r.session = null;
+    } else
+      n.type = o.io.events.SessionEvent.REQUEST_LOGIN, n.passport_url = s.session.passport_url, r.session = s.session;
+    if (r.__ngio.session_id = r.session ? r.session.id : null, r.dispatchEvent(n), t && t.constructor === Function)
+      t.call(e, r.session);
+  });
+}, checkSession: function(t, e) {
+  var n = new o.io.events.SessionEvent, r = this;
+  if (r.session && r.session.user) {
+    if (n.type = o.io.events.SessionEvent.USER_LOADED, n.user = r.session.user, r.dispatchEvent(n), t && t.constructor === Function)
+      t.call(e, r.session);
+  } else if (!this.__ngio.session_id) {
+    if (n.type = o.io.events.SessionEvent.SESSION_EXPIRED, r.session = null, r.dispatchEvent(n), t && t.constructor === Function)
+      t.call(e, null);
+  } else
+    this.__ngio.callComponent("App.checkSession", function(s) {
+      if (!s.success || !s.session || s.session.expired)
+        if (n.type = o.io.events.SessionEvent.SESSION_EXPIRED, r.session = null, s.error)
+          r.last_error = s.error;
+        else if (r.last_error = new o.io.model.error, s.session && s.session.expired)
+          r.last_error.message = "Session is Expired";
+        else
+          r.last_error.message = "Unexpected Error";
+      else if (!s.session.user)
+        n.type = o.io.events.SessionEvent.REQUEST_LOGIN, n.passport_url = s.session.passport_url, r.session = s.session;
+      else
+        n.type = o.io.events.SessionEvent.USER_LOADED, n.user = s.session.user, r.session = s.session;
+      if (r.__ngio.session_id = r.session ? r.session.id : null, r.dispatchEvent(n), t && t.constructor === Function)
+        t.call(e, r.session);
+    });
+}, endSession: function(t, e) {
+  var n = this, r = this.__ngio;
+  this.__ngio.callComponent("App.endSession", function(s) {
+    n.session = null, r.session_id = null;
+    var a = new o.io.events.SessionEvent(o.io.events.SessionEvent.SESSION_EXPIRED);
+    if (n.dispatchEvent(a), t && t.constructor === Function)
+      t.call(e, n.session);
+  }), this.__ngio.session_id = null, this.session = null;
+}, loadPassport: function(t) {
+  if (typeof t != "string")
+    t = "_blank";
+  if (!this.session || !this.session.passport_url)
+    return console.warn("Attempted to open Newgrounds Passport without a valid passport_url. Be sure you have called getValidSession() first!."), false;
+  if (this.passport_window = window.open(this.session.passport_url, t), !this.passport_window)
+    console.warn("Unable to detect passport window. Pop-up blockers will prevent loading Newgrounds Passport if loadPassport() or requestLogin() are not called from within a mouse click handler.");
+  return this.passportOpen();
+}, closePassport: function() {
+  if (!this.passport_window)
+    return false;
+  return this.passport_window.close(), this.passportOpen();
+}, passportOpen: function() {
+  return this.passport_window && this.passport_window.parent ? true : false;
+} };
+o.io.SessionLoader.prototype.constructor = o.io.SessionLoader;
+var b = b || function(t, e) {
+  var n = {}, r = n.lib = {}, s = function() {
+  }, a = r.Base = { extend: function(l2) {
+    s.prototype = this;
+    var f = new s;
+    return l2 && f.mixIn(l2), f.hasOwnProperty("init") || (f.init = function() {
+      f.$super.init.apply(this, arguments);
+    }), f.init.prototype = f, f.$super = this, f;
+  }, create: function() {
+    var l2 = this.extend();
+    return l2.init.apply(l2, arguments), l2;
+  }, init: function() {
+  }, mixIn: function(l2) {
+    for (var f in l2)
+      l2.hasOwnProperty(f) && (this[f] = l2[f]);
+    l2.hasOwnProperty("toString") && (this.toString = l2.toString);
+  }, clone: function() {
+    return this.init.prototype.extend(this);
+  } }, c = r.WordArray = a.extend({ init: function(l2, f) {
+    l2 = this.words = l2 || [], this.sigBytes = f != e ? f : 4 * l2.length;
+  }, toString: function(l2) {
+    return (l2 || x).stringify(this);
+  }, concat: function(l2) {
+    var f = this.words, u = l2.words, p = this.sigBytes;
+    if (l2 = l2.sigBytes, this.clamp(), p % 4)
+      for (var _ = 0;_ < l2; _++)
+        f[p + _ >>> 2] |= (u[_ >>> 2] >>> 24 - 8 * (_ % 4) & 255) << 24 - 8 * ((p + _) % 4);
+    else if (65535 < u.length)
+      for (_ = 0;_ < l2; _ += 4)
+        f[p + _ >>> 2] = u[_ >>> 2];
+    else
+      f.push.apply(f, u);
+    return this.sigBytes += l2, this;
+  }, clamp: function() {
+    var l2 = this.words, f = this.sigBytes;
+    l2[f >>> 2] &= 4294967295 << 32 - 8 * (f % 4), l2.length = t.ceil(f / 4);
+  }, clone: function() {
+    var l2 = a.clone.call(this);
+    return l2.words = this.words.slice(0), l2;
+  }, random: function(l2) {
+    for (var f = [], u = 0;u < l2; u += 4)
+      f.push(4294967296 * t.random() | 0);
+    return new c.init(f, l2);
+  } }), h2 = n.enc = {}, x = h2.Hex = { stringify: function(l2) {
+    var f = l2.words;
+    l2 = l2.sigBytes;
+    for (var u = [], p = 0;p < l2; p++) {
+      var _ = f[p >>> 2] >>> 24 - 8 * (p % 4) & 255;
+      u.push((_ >>> 4).toString(16)), u.push((_ & 15).toString(16));
+    }
+    return u.join("");
+  }, parse: function(l2) {
+    for (var f = l2.length, u = [], p = 0;p < f; p += 2)
+      u[p >>> 3] |= parseInt(l2.substr(p, 2), 16) << 24 - 4 * (p % 8);
+    return new c.init(u, f / 2);
+  } }, d = h2.Latin1 = { stringify: function(l2) {
+    var f = l2.words;
+    l2 = l2.sigBytes;
+    for (var u = [], p = 0;p < l2; p++)
+      u.push(String.fromCharCode(f[p >>> 2] >>> 24 - 8 * (p % 4) & 255));
+    return u.join("");
+  }, parse: function(l2) {
+    for (var f = l2.length, u = [], p = 0;p < f; p++)
+      u[p >>> 2] |= (l2.charCodeAt(p) & 255) << 24 - 8 * (p % 4);
+    return new c.init(u, f);
+  } }, E = h2.Utf8 = { stringify: function(l2) {
+    try {
+      return decodeURIComponent(escape(d.stringify(l2)));
+    } catch (f) {
+      throw Error("Malformed UTF-8 data");
+    }
+  }, parse: function(l2) {
+    return d.parse(unescape(encodeURIComponent(l2)));
+  } }, g = r.BufferedBlockAlgorithm = a.extend({ reset: function() {
+    this._data = new c.init, this._nDataBytes = 0;
+  }, _append: function(l2) {
+    typeof l2 == "string" && (l2 = E.parse(l2)), this._data.concat(l2), this._nDataBytes += l2.sigBytes;
+  }, _process: function(l2) {
+    var f = this._data, u = f.words, p = f.sigBytes, _ = this.blockSize, O = p / (4 * _), O = l2 ? t.ceil(O) : t.max((O | 0) - this._minBufferSize, 0);
+    if (l2 = O * _, p = t.min(4 * l2, p), l2) {
+      for (var A = 0;A < l2; A += _)
+        this._doProcessBlock(u, A);
+      A = u.splice(0, l2), f.sigBytes -= p;
+    }
+    return new c.init(A, p);
+  }, clone: function() {
+    var l2 = a.clone.call(this);
+    return l2._data = this._data.clone(), l2;
+  }, _minBufferSize: 0 });
+  r.Hasher = g.extend({ cfg: a.extend(), init: function(l2) {
+    this.cfg = this.cfg.extend(l2), this.reset();
+  }, reset: function() {
+    g.reset.call(this), this._doReset();
+  }, update: function(l2) {
+    return this._append(l2), this._process(), this;
+  }, finalize: function(l2) {
+    return l2 && this._append(l2), this._doFinalize();
+  }, blockSize: 16, _createHelper: function(l2) {
+    return function(f, u) {
+      return new l2.init(u).finalize(f);
+    };
+  }, _createHmacHelper: function(l2) {
+    return function(f, u) {
+      return new w.HMAC.init(l2, u).finalize(f);
+    };
+  } });
+  var w = n.algo = {};
+  return n;
+}(Math);
+(function() {
+  var t = b, e = t.lib.WordArray;
+  t.enc.Base64 = { stringify: function(n) {
+    var { words: r, sigBytes: s } = n, a = this._map;
+    n.clamp(), n = [];
+    for (var c = 0;c < s; c += 3)
+      for (var h2 = (r[c >>> 2] >>> 24 - 8 * (c % 4) & 255) << 16 | (r[c + 1 >>> 2] >>> 24 - 8 * ((c + 1) % 4) & 255) << 8 | r[c + 2 >>> 2] >>> 24 - 8 * ((c + 2) % 4) & 255, x = 0;4 > x && c + 0.75 * x < s; x++)
+        n.push(a.charAt(h2 >>> 6 * (3 - x) & 63));
+    if (r = a.charAt(64))
+      for (;n.length % 4; )
+        n.push(r);
+    return n.join("");
+  }, parse: function(n) {
+    var r = n.length, s = this._map, a = s.charAt(64);
+    a && (a = n.indexOf(a), a != -1 && (r = a));
+    for (var a = [], c = 0, h2 = 0;h2 < r; h2++)
+      if (h2 % 4) {
+        var x = s.indexOf(n.charAt(h2 - 1)) << 2 * (h2 % 4), d = s.indexOf(n.charAt(h2)) >>> 6 - 2 * (h2 % 4);
+        a[c >>> 2] |= (x | d) << 24 - 8 * (c % 4), c++;
+      }
+    return e.create(a, c);
+  }, _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=" };
+})();
+(function(t) {
+  function e(g, w, l2, f, u, p, _) {
+    return g = g + (w & l2 | ~w & f) + u + _, (g << p | g >>> 32 - p) + w;
+  }
+  function n(g, w, l2, f, u, p, _) {
+    return g = g + (w & f | l2 & ~f) + u + _, (g << p | g >>> 32 - p) + w;
+  }
+  function r(g, w, l2, f, u, p, _) {
+    return g = g + (w ^ l2 ^ f) + u + _, (g << p | g >>> 32 - p) + w;
+  }
+  function s(g, w, l2, f, u, p, _) {
+    return g = g + (l2 ^ (w | ~f)) + u + _, (g << p | g >>> 32 - p) + w;
+  }
+  for (var a = b, x = a.lib, c = x.WordArray, h2 = x.Hasher, x = a.algo, d = [], E = 0;64 > E; E++)
+    d[E] = 4294967296 * t.abs(t.sin(E + 1)) | 0;
+  x = x.MD5 = h2.extend({ _doReset: function() {
+    this._hash = new c.init([1732584193, 4023233417, 2562383102, 271733878]);
+  }, _doProcessBlock: function(g, w) {
+    for (var l2 = 0;16 > l2; l2++) {
+      var f = w + l2, u = g[f];
+      g[f] = (u << 8 | u >>> 24) & 16711935 | (u << 24 | u >>> 8) & 4278255360;
+    }
+    var l2 = this._hash.words, f = g[w + 0], u = g[w + 1], p = g[w + 2], _ = g[w + 3], O = g[w + 4], A = g[w + 5], V = g[w + 6], U = g[w + 7], M = g[w + 8], I = g[w + 9], P = g[w + 10], j2 = g[w + 11], L = g[w + 12], B = g[w + 13], N = g[w + 14], C2 = g[w + 15], m = l2[0], v = l2[1], y = l2[2], S = l2[3], m = e(m, v, y, S, f, 7, d[0]), S = e(S, m, v, y, u, 12, d[1]), y = e(y, S, m, v, p, 17, d[2]), v = e(v, y, S, m, _, 22, d[3]), m = e(m, v, y, S, O, 7, d[4]), S = e(S, m, v, y, A, 12, d[5]), y = e(y, S, m, v, V, 17, d[6]), v = e(v, y, S, m, U, 22, d[7]), m = e(m, v, y, S, M, 7, d[8]), S = e(S, m, v, y, I, 12, d[9]), y = e(y, S, m, v, P, 17, d[10]), v = e(v, y, S, m, j2, 22, d[11]), m = e(m, v, y, S, L, 7, d[12]), S = e(S, m, v, y, B, 12, d[13]), y = e(y, S, m, v, N, 17, d[14]), v = e(v, y, S, m, C2, 22, d[15]), m = n(m, v, y, S, u, 5, d[16]), S = n(S, m, v, y, V, 9, d[17]), y = n(y, S, m, v, j2, 14, d[18]), v = n(v, y, S, m, f, 20, d[19]), m = n(m, v, y, S, A, 5, d[20]), S = n(S, m, v, y, P, 9, d[21]), y = n(y, S, m, v, C2, 14, d[22]), v = n(v, y, S, m, O, 20, d[23]), m = n(m, v, y, S, I, 5, d[24]), S = n(S, m, v, y, N, 9, d[25]), y = n(y, S, m, v, _, 14, d[26]), v = n(v, y, S, m, M, 20, d[27]), m = n(m, v, y, S, B, 5, d[28]), S = n(S, m, v, y, p, 9, d[29]), y = n(y, S, m, v, U, 14, d[30]), v = n(v, y, S, m, L, 20, d[31]), m = r(m, v, y, S, A, 4, d[32]), S = r(S, m, v, y, M, 11, d[33]), y = r(y, S, m, v, j2, 16, d[34]), v = r(v, y, S, m, N, 23, d[35]), m = r(m, v, y, S, u, 4, d[36]), S = r(S, m, v, y, O, 11, d[37]), y = r(y, S, m, v, U, 16, d[38]), v = r(v, y, S, m, P, 23, d[39]), m = r(m, v, y, S, B, 4, d[40]), S = r(S, m, v, y, f, 11, d[41]), y = r(y, S, m, v, _, 16, d[42]), v = r(v, y, S, m, V, 23, d[43]), m = r(m, v, y, S, I, 4, d[44]), S = r(S, m, v, y, L, 11, d[45]), y = r(y, S, m, v, C2, 16, d[46]), v = r(v, y, S, m, p, 23, d[47]), m = s(m, v, y, S, f, 6, d[48]), S = s(S, m, v, y, U, 10, d[49]), y = s(y, S, m, v, N, 15, d[50]), v = s(v, y, S, m, A, 21, d[51]), m = s(m, v, y, S, L, 6, d[52]), S = s(S, m, v, y, _, 10, d[53]), y = s(y, S, m, v, P, 15, d[54]), v = s(v, y, S, m, u, 21, d[55]), m = s(m, v, y, S, M, 6, d[56]), S = s(S, m, v, y, C2, 10, d[57]), y = s(y, S, m, v, V, 15, d[58]), v = s(v, y, S, m, B, 21, d[59]), m = s(m, v, y, S, O, 6, d[60]), S = s(S, m, v, y, j2, 10, d[61]), y = s(y, S, m, v, p, 15, d[62]), v = s(v, y, S, m, I, 21, d[63]);
+    l2[0] = l2[0] + m | 0, l2[1] = l2[1] + v | 0, l2[2] = l2[2] + y | 0, l2[3] = l2[3] + S | 0;
+  }, _doFinalize: function() {
+    var g = this._data, w = g.words, l2 = 8 * this._nDataBytes, f = 8 * g.sigBytes;
+    w[f >>> 5] |= 128 << 24 - f % 32;
+    var u = t.floor(l2 / 4294967296);
+    w[(f + 64 >>> 9 << 4) + 15] = (u << 8 | u >>> 24) & 16711935 | (u << 24 | u >>> 8) & 4278255360, w[(f + 64 >>> 9 << 4) + 14] = (l2 << 8 | l2 >>> 24) & 16711935 | (l2 << 24 | l2 >>> 8) & 4278255360, g.sigBytes = 4 * (w.length + 1), this._process(), g = this._hash, w = g.words;
+    for (l2 = 0;4 > l2; l2++)
+      f = w[l2], w[l2] = (f << 8 | f >>> 24) & 16711935 | (f << 24 | f >>> 8) & 4278255360;
+    return g;
+  }, clone: function() {
+    var g = h2.clone.call(this);
+    return g._hash = this._hash.clone(), g;
+  } }), a.MD5 = h2._createHelper(x), a.HmacMD5 = h2._createHmacHelper(x);
+})(Math);
+(function() {
+  var t = b, r = t.lib, e = r.Base, n = r.WordArray, r = t.algo, s = r.EvpKDF = e.extend({ cfg: e.extend({ keySize: 4, hasher: r.MD5, iterations: 1 }), init: function(a) {
+    this.cfg = this.cfg.extend(a);
+  }, compute: function(a, c) {
+    for (var g = this.cfg, h2 = g.hasher.create(), x = n.create(), d = x.words, E = g.keySize, g = g.iterations;d.length < E; ) {
+      w && h2.update(w);
+      var w = h2.update(a).finalize(c);
+      h2.reset();
+      for (var l2 = 1;l2 < g; l2++)
+        w = h2.finalize(w), h2.reset();
+      x.concat(w);
+    }
+    return x.sigBytes = 4 * E, x;
+  } });
+  t.EvpKDF = function(a, c, h2) {
+    return s.create(h2).compute(a, c);
+  };
+})();
+b.lib.Cipher || function(t) {
+  var l2 = b, e = l2.lib, n = e.Base, r = e.WordArray, s = e.BufferedBlockAlgorithm, a = l2.enc.Base64, c = l2.algo.EvpKDF, h2 = e.Cipher = s.extend({ cfg: n.extend(), createEncryptor: function(u, p) {
+    return this.create(this._ENC_XFORM_MODE, u, p);
+  }, createDecryptor: function(u, p) {
+    return this.create(this._DEC_XFORM_MODE, u, p);
+  }, init: function(u, p, _) {
+    this.cfg = this.cfg.extend(_), this._xformMode = u, this._key = p, this.reset();
+  }, reset: function() {
+    s.reset.call(this), this._doReset();
+  }, process: function(u) {
+    return this._append(u), this._process();
+  }, finalize: function(u) {
+    return u && this._append(u), this._doFinalize();
+  }, keySize: 4, ivSize: 4, _ENC_XFORM_MODE: 1, _DEC_XFORM_MODE: 2, _createHelper: function(u) {
+    return { encrypt: function(p, _, O) {
+      return (typeof _ == "string" ? f : w).encrypt(u, p, _, O);
+    }, decrypt: function(p, _, O) {
+      return (typeof _ == "string" ? f : w).decrypt(u, p, _, O);
+    } };
+  } });
+  e.StreamCipher = h2.extend({ _doFinalize: function() {
+    return this._process(true);
+  }, blockSize: 1 });
+  var g = l2.mode = {}, x = function(u, p, _) {
+    var O = this._iv;
+    O ? this._iv = t : O = this._prevBlock;
+    for (var A = 0;A < _; A++)
+      u[p + A] ^= O[A];
+  }, d = (e.BlockCipherMode = n.extend({ createEncryptor: function(u, p) {
+    return this.Encryptor.create(u, p);
+  }, createDecryptor: function(u, p) {
+    return this.Decryptor.create(u, p);
+  }, init: function(u, p) {
+    this._cipher = u, this._iv = p;
+  } })).extend();
+  d.Encryptor = d.extend({ processBlock: function(u, p) {
+    var _ = this._cipher, O = _.blockSize;
+    x.call(this, u, p, O), _.encryptBlock(u, p), this._prevBlock = u.slice(p, p + O);
+  } }), d.Decryptor = d.extend({ processBlock: function(u, p) {
+    var _ = this._cipher, O = _.blockSize, A = u.slice(p, p + O);
+    _.decryptBlock(u, p), x.call(this, u, p, O), this._prevBlock = A;
+  } }), g = g.CBC = d, d = (l2.pad = {}).Pkcs7 = { pad: function(u, p) {
+    for (var _ = 4 * p, _ = _ - u.sigBytes % _, O = _ << 24 | _ << 16 | _ << 8 | _, A = [], V = 0;V < _; V += 4)
+      A.push(O);
+    _ = r.create(A, _), u.concat(_);
+  }, unpad: function(u) {
+    u.sigBytes -= u.words[u.sigBytes - 1 >>> 2] & 255;
+  } }, e.BlockCipher = h2.extend({ cfg: h2.cfg.extend({ mode: g, padding: d }), reset: function() {
+    h2.reset.call(this);
+    var p = this.cfg, u = p.iv, p = p.mode;
+    if (this._xformMode == this._ENC_XFORM_MODE)
+      var _ = p.createEncryptor;
+    else
+      _ = p.createDecryptor, this._minBufferSize = 1;
+    this._mode = _.call(p, this, u && u.words);
+  }, _doProcessBlock: function(u, p) {
+    this._mode.processBlock(u, p);
+  }, _doFinalize: function() {
+    var u = this.cfg.padding;
+    if (this._xformMode == this._ENC_XFORM_MODE) {
+      u.pad(this._data, this.blockSize);
+      var p = this._process(true);
+    } else
+      p = this._process(true), u.unpad(p);
+    return p;
+  }, blockSize: 4 });
+  var E = e.CipherParams = n.extend({ init: function(u) {
+    this.mixIn(u);
+  }, toString: function(u) {
+    return (u || this.formatter).stringify(this);
+  } }), g = (l2.format = {}).OpenSSL = { stringify: function(u) {
+    var p = u.ciphertext;
+    return u = u.salt, (u ? r.create([1398893684, 1701076831]).concat(u).concat(p) : p).toString(a);
+  }, parse: function(u) {
+    u = a.parse(u);
+    var p = u.words;
+    if (p[0] == 1398893684 && p[1] == 1701076831) {
+      var _ = r.create(p.slice(2, 4));
+      p.splice(0, 4), u.sigBytes -= 16;
+    }
+    return E.create({ ciphertext: u, salt: _ });
+  } }, w = e.SerializableCipher = n.extend({ cfg: n.extend({ format: g }), encrypt: function(u, p, _, O) {
+    O = this.cfg.extend(O);
+    var A = u.createEncryptor(_, O);
+    return p = A.finalize(p), A = A.cfg, E.create({ ciphertext: p, key: _, iv: A.iv, algorithm: u, mode: A.mode, padding: A.padding, blockSize: u.blockSize, formatter: O.format });
+  }, decrypt: function(u, p, _, O) {
+    return O = this.cfg.extend(O), p = this._parse(p, O.format), u.createDecryptor(_, O).finalize(p.ciphertext);
+  }, _parse: function(u, p) {
+    return typeof u == "string" ? p.parse(u, this) : u;
+  } }), l2 = (l2.kdf = {}).OpenSSL = { execute: function(u, p, _, O) {
+    return O || (O = r.random(8)), u = c.create({ keySize: p + _ }).compute(u, O), _ = r.create(u.words.slice(p), 4 * _), u.sigBytes = 4 * p, E.create({ key: u, iv: _, salt: O });
+  } }, f = e.PasswordBasedCipher = w.extend({ cfg: w.cfg.extend({ kdf: l2 }), encrypt: function(u, p, _, O) {
+    return O = this.cfg.extend(O), _ = O.kdf.execute(_, u.keySize, u.ivSize), O.iv = _.iv, u = w.encrypt.call(this, u, p, _.key, O), u.mixIn(_), u;
+  }, decrypt: function(u, p, _, O) {
+    return O = this.cfg.extend(O), p = this._parse(p, O.format), _ = O.kdf.execute(_, u.keySize, u.ivSize, p.salt), O.iv = _.iv, w.decrypt.call(this, u, p, _.key, O);
+  } });
+}();
+(function() {
+  for (var t = b, e = t.lib.BlockCipher, M = t.algo, n = [], r = [], s = [], a = [], c = [], h2 = [], x = [], d = [], E = [], g = [], w = [], l2 = 0;256 > l2; l2++)
+    w[l2] = 128 > l2 ? l2 << 1 : l2 << 1 ^ 283;
+  for (var f = 0, u = 0, l2 = 0;256 > l2; l2++) {
+    var p = u ^ u << 1 ^ u << 2 ^ u << 3 ^ u << 4, p = p >>> 8 ^ p & 255 ^ 99;
+    n[f] = p, r[p] = f;
+    var _ = w[f], O = w[_], A = w[O], V = 257 * w[p] ^ 16843008 * p;
+    s[f] = V << 24 | V >>> 8, a[f] = V << 16 | V >>> 16, c[f] = V << 8 | V >>> 24, h2[f] = V, V = 16843009 * A ^ 65537 * O ^ 257 * _ ^ 16843008 * f, x[p] = V << 24 | V >>> 8, d[p] = V << 16 | V >>> 16, E[p] = V << 8 | V >>> 24, g[p] = V, f ? (f = _ ^ w[w[w[A ^ _]]], u ^= w[w[u]]) : f = u = 1;
+  }
+  var U = [0, 1, 2, 4, 8, 16, 32, 64, 128, 27, 54], M = M.AES = e.extend({ _doReset: function() {
+    for (var j2 = this._key, I = j2.words, P = j2.sigBytes / 4, j2 = 4 * ((this._nRounds = P + 6) + 1), L = this._keySchedule = [], B = 0;B < j2; B++)
+      if (B < P)
+        L[B] = I[B];
+      else {
+        var N = L[B - 1];
+        B % P ? 6 < P && B % P == 4 && (N = n[N >>> 24] << 24 | n[N >>> 16 & 255] << 16 | n[N >>> 8 & 255] << 8 | n[N & 255]) : (N = N << 8 | N >>> 24, N = n[N >>> 24] << 24 | n[N >>> 16 & 255] << 16 | n[N >>> 8 & 255] << 8 | n[N & 255], N ^= U[B / P | 0] << 24), L[B] = L[B - P] ^ N;
+      }
+    I = this._invKeySchedule = [];
+    for (P = 0;P < j2; P++)
+      B = j2 - P, N = P % 4 ? L[B] : L[B - 4], I[P] = 4 > P || 4 >= B ? N : x[n[N >>> 24]] ^ d[n[N >>> 16 & 255]] ^ E[n[N >>> 8 & 255]] ^ g[n[N & 255]];
+  }, encryptBlock: function(I, P) {
+    this._doCryptBlock(I, P, this._keySchedule, s, a, c, h2, n);
+  }, decryptBlock: function(I, P) {
+    var j2 = I[P + 1];
+    I[P + 1] = I[P + 3], I[P + 3] = j2, this._doCryptBlock(I, P, this._invKeySchedule, x, d, E, g, r), j2 = I[P + 1], I[P + 1] = I[P + 3], I[P + 3] = j2;
+  }, _doCryptBlock: function(I, P, j2, L, B, N, C2, m) {
+    for (var S = this._nRounds, q = I[P] ^ j2[0], D = I[P + 1] ^ j2[1], k = I[P + 2] ^ j2[2], R = I[P + 3] ^ j2[3], y = 4, v = 1;v < S; v++)
+      var T = L[q >>> 24] ^ B[D >>> 16 & 255] ^ N[k >>> 8 & 255] ^ C2[R & 255] ^ j2[y++], F = L[D >>> 24] ^ B[k >>> 16 & 255] ^ N[R >>> 8 & 255] ^ C2[q & 255] ^ j2[y++], H2 = L[k >>> 24] ^ B[R >>> 16 & 255] ^ N[q >>> 8 & 255] ^ C2[D & 255] ^ j2[y++], R = L[R >>> 24] ^ B[q >>> 16 & 255] ^ N[D >>> 8 & 255] ^ C2[k & 255] ^ j2[y++], q = T, D = F, k = H2;
+    T = (m[q >>> 24] << 24 | m[D >>> 16 & 255] << 16 | m[k >>> 8 & 255] << 8 | m[R & 255]) ^ j2[y++], F = (m[D >>> 24] << 24 | m[k >>> 16 & 255] << 16 | m[R >>> 8 & 255] << 8 | m[q & 255]) ^ j2[y++], H2 = (m[k >>> 24] << 24 | m[R >>> 16 & 255] << 16 | m[q >>> 8 & 255] << 8 | m[D & 255]) ^ j2[y++], R = (m[R >>> 24] << 24 | m[q >>> 16 & 255] << 16 | m[D >>> 8 & 255] << 8 | m[k & 255]) ^ j2[y++], I[P] = T, I[P + 1] = F, I[P + 2] = H2, I[P + 3] = R;
+  }, keySize: 8 });
+  t.AES = e._createHelper(M);
+})();
+var X = { game: "Divine Techno Run", url: "https://www.newgrounds.com/portal/view/628667", key: "34685:cxZQ5a1E", skey: "aBuRcFJLqDmPe3Gb0uultA==" };
+
+class z {
+  #e;
+  config;
+  #u = {};
+  #t;
+  #r;
+  #l;
+  #n;
+  #o;
+  #a = new Set;
+  #c = new Set;
+  audio;
+  audioOut;
+  gameUrl;
+  static async validateSession(t, e = X) {
+    const n = new o.io.core(e.key, e.skey);
+    return n.session_id = t, new Promise((r) => {
+      n.callComponent("App.checkSession", {}, (s) => {
+        r(s?.success ? s.session?.user?.name : undefined);
+      });
+    });
+  }
+  validateSession(t) {
+    return z.validateSession(t, this.config);
+  }
+  addLoginListener(t) {
+    this.#a.add(t);
+  }
+  addUnlockListener(t) {
+    this.#c.add(t);
+  }
+  constructor(t = X) {
+    this.config = t, this.#e = new o.io.core(t.key, t.skey), this.#l = t.debug, this.initSession(), this.audio = t.noAudio ? undefined : new Audio(t.audioIn ?? "https://jacklehamster.github.io/medal-popup/example/sounds/ng-sound.ogg"), this.audioOut = t.noAudio ? undefined : new Audio(t.audioOut ?? "https://jacklehamster.github.io/medal-popup/example/sounds/ng-sound-out.ogg"), this.gameUrl = t.url;
+  }
+  get loggedIn() {
+    return !!this.#e.user;
+  }
+  get icons() {
+    return this.#e.user?.icons;
+  }
+  get user() {
+    return this.#e.user?.name;
+  }
+  async getScoreboards() {
+    return new Promise((t) => {
+      if (this.#n)
+        t?.(this.#n);
+      else if (this.#o)
+        this.#o.push(t);
+      else
+        this.#o = [t], this.#e.callComponent("ScoreBoard.getBoards", {}, (e) => {
+          if (e.success) {
+            this.#n = e.scoreboards;
+            const n = {};
+            this.#n.forEach((r) => n[r.id] = r.name), this.#o?.forEach((r) => r?.(this.#n ?? [])), this.#o = undefined;
+          }
+        });
+    });
+  }
+  async getMedals() {
+    return new Promise((t) => {
+      if (this.#t)
+        t(this.#t);
+      else if (this.#r)
+        this.#r.push(t);
+      else
+        this.#r = [t], this.#e.callComponent("Medal.getList", {}, (e) => {
+          if (e.success) {
+            this.#t = e.medals;
+            const n = "font-weight: bold;";
+            console.log("%c Unlocked:", n, this.#t?.filter(({ unlocked: r }) => r).map(({ name: r }) => r).join(", ")), console.log("%c Locked:", n, this.#t?.filter(({ unlocked: r }) => !r).map(({ name: r }) => r).join(", ")), this.#r?.forEach((r) => r?.(this.#t ?? [])), this.#r = undefined;
+          }
+        });
+    });
+  }
+  async unlockMedal(t) {
+    if (!this.#e.user)
+      return;
+    console.log("unlocking", t, "for", this.#e.user.name);
+    const e = await this.getMedals(), n = e.filter((r) => r.name === t)[0];
+    if (n)
+      return new Promise((r) => {
+        if (!n.unlocked && !this.#u[n.id])
+          this.#e.callComponent("Medal.unlock", { id: n.id }, (s) => {
+            const a = s.medal;
+            if (a) {
+              for (let c = 0;c < e.length; c++)
+                if (e[c].id === a.id)
+                  e[c] = a;
+              this.#u[a.id] = true, this.#c.forEach((c) => c(a)), this.showReceivedMedal(a), r(s.medal);
+            }
+          });
+        else
+          r(n);
+      });
+    else
+      console.warn(`Medal doesn't exist: ${t}`);
+  }
+  requestLogin() {
+    this.#e.requestLogin(this.onLoggedIn, this.onLoginFailed, this.onLoginCancelled);
+    const t = document.getElementById("newgrounds-login");
+    if (t)
+      t.style.display = "none";
+  }
+  onLoginFailed() {
+    console.log("There was a problem logging in: ", this.#e.login_error?.message);
+    const t = document.getElementById("newgrounds-login");
+    if (t)
+      t.style.display = "";
+  }
+  onLoginCancelled() {
+    console.log("The user cancelled the login.");
+    const t = document.getElementById("newgrounds-login");
+    if (t)
+      t.style.display = "";
+  }
+  initSession() {
+    this.#e.getValidSession(() => {
+      this.validateSession(this.#e.session_id);
+      const t = !this.#l ? undefined : document.body.appendChild(document.createElement("button"));
+      if (t)
+        t.id = "newgrounds-login", t.style.position = "absolute", t.style.top = "5px", t.style.right = "5px", t.style.height = "24px", t.style.fontSize = "10pt", t.style.zIndex = "1000", t.classList.add("button"), t.innerText = "login newgrounds", t.addEventListener("click", (e) => {
+          this.requestLogin(), e.stopPropagation();
+        });
+      if (this.#e.user)
+        t?.parentElement?.removeChild(t), this.onLoggedIn();
+    });
+  }
+  onLoggedIn() {
+    console.log("Welcome ", this.#e.user?.name + "!"), this.#a.forEach((t) => t()), this.getMedals(), this.getScoreboards();
+  }
+  #s;
+  #p() {
+    if (!this.#s) {
+      const t = document.body.appendChild(document.createElement("div"));
+      t.style.display = "none", t.style.position = "absolute", t.style.right = "10px", t.style.top = "10px", t.style.padding = "5px 10px", t.style.border = "2px solid #880", t.style.borderRadius = "5px", t.style.background = "linear-gradient(#884, #553)", t.style.boxShadow = "2px 2px black", t.style.flexDirection = "row", t.style.transition = "opacity .5s, margin-right .3s", t.style.opacity = "0", t.style.marginRight = "-300px", t.style.zIndex = "3000", t.style.fontFamily = "Papyrus, fantasy", this.#s = t;
+    }
+    return this.#s;
+  }
+  #i;
+  showReceivedMedal(t) {
+    clearTimeout(this.#i);
+    const e = this.#p();
+    e.style.display = "flex", e.innerText = "";
+    const n = e.appendChild(document.createElement("img"));
+    n.addEventListener("load", () => {
+      if (e.style.display = "flex", e.style.opacity = "1", e.style.marginRight = "0", !window.mute)
+        this.audio?.play();
+      this.#i = setTimeout(() => {
+        if (!window.mute)
+          this.audioOut?.play();
+        e.style.opacity = "0", this.#i = setTimeout(() => {
+          e.style.display = "none", e.style.marginRight = "-300px", this.#i = undefined;
+        }, 1000);
+      }, 5000);
+    }), n.style.width = "50px", n.style.height = "50px", n.style.backgroundColor = "black", n.style.borderRadius = "3px", n.src = t.icon;
+    const r = e.appendChild(document.createElement("div"));
+    r.style.marginLeft = "10px";
+    const s = r.appendChild(document.createElement("div"));
+    s.style.fontWeight = "bold", s.style.fontSize = "12pt", s.style.color = "gold", s.style.margin = "5px", s.innerText = `\uD83C\uDFC6 ${t.name}`;
+    const a = r.appendChild(document.createElement("div"));
+    a.style.fontSize = "10pt", a.style.color = "silver", a.innerText = t.description;
+  }
+  async postScore(t, e) {
+    const n = await this.getScoreboards(), r = e ? n.find((s) => s.name === e) : n[0];
+    if (r)
+      return new Promise((s) => {
+        this.#e.callComponent("ScoreBoard.postScore", { id: r.id, value: t }, (a) => {
+          s(a.success);
+        });
+      });
+  }
+  async logView() {
+    this.#e.callComponent("App.logView", { host: location.host }, (t) => {
+      console.log(t);
+    });
+  }
+  async logEvent(t) {
+    this.#e.callComponent("Event.logEvent", { event_name: t, host: location.host }, (e) => {
+      console.log(e);
+    });
+  }
+}
+var newgrounds = new z({
+  game: "Tiny garden of Eden",
+  url: "https://www.newgrounds.com/portal/view/950937",
+  key: "59102:6dCmD4R6",
+  skey: "zQbRjHb+MBBebNJGh7/UvQ=="
+});
 var jsx_dev_runtime = __toESM2(require_jsx_dev_runtime(), 1);
 var CELL_SIZE = 0.03;
 var urlVars = new URLSearchParams(window.location.search);
@@ -26572,10 +28199,10 @@ class Creature {
   }
   lastSymbol = 0;
   move(time, map, game) {
-    for (let i = this.members.length - 1;i > 0; i--) {
-      this.members[i].x = this.members[i - 1].x;
-      this.members[i].y = this.members[i - 1].y;
-      this.members[i].rotation = this.members[i - 1].rotation;
+    for (let i2 = this.members.length - 1;i2 > 0; i2--) {
+      this.members[i2].x = this.members[i2 - 1].x;
+      this.members[i2].y = this.members[i2 - 1].y;
+      this.members[i2].rotation = this.members[i2 - 1].rotation;
     }
     const px = this.members[0].x + this.mov[0] * 0.01;
     const py = this.members[0].y + this.mov[1] * 0.01;
@@ -26940,6 +28567,13 @@ class Game {
   initialized = false;
   shaderProgram = null;
   lastDanger = 0;
+  timeout = {};
+  scoreAndDebounce(score, board) {
+    clearTimeout(this.timeout[board]);
+    this.timeout[board] = setTimeout(() => {
+      newgrounds.postScore(score(), board);
+    }, 1e4);
+  }
   refresh(payload) {
     this.creatures.forEach((creature) => creature.gravity());
     this.creatures.forEach((creature) => creature.move(payload.time, this.map, this));
@@ -26962,6 +28596,7 @@ class Game {
         if (joyIndex < 1) {
           this.progressJoy.style.backgroundColor = Math.random() < 0.5 ? "red" : "yellow";
           if (payload.time > 30000 && payload.time - this.lastDanger > 1e4) {
+            newgrounds.postScore(totalScore, "Score");
             alert("Game Over! Your tardigrades are too sad to continue.");
             this.motor.stopLoop?.();
           }
@@ -26979,8 +28614,14 @@ class Game {
           this.lastDanger = payload.time;
         }
       }
+      const year = Math.floor(age / 1000);
       this.labelScore.textContent = `Score: ${totalScore}`;
-      this.labelAge.textContent = `Year: ${Math.floor(age / 1000)}`;
+      this.labelAge.textContent = `Year: ${year}`;
+      const savedYear = parseInt(localStorage.getItem("year") ?? "0");
+      if (year > savedYear && year > 5) {
+        localStorage.setItem("year", year.toString());
+        this.scoreAndDebounce(() => Math.floor(age / 1000), "Year");
+      }
     }
     const gl = this.gl;
     if (!this.initialized) {
@@ -27114,10 +28755,15 @@ class Game {
       }
       displayedCreatures.push(creature);
       this.labelCount.textContent = `Tardigrades: ${displayedCreatures.length}`;
+      const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+      if (this.creatures.length > 5 && this.createCreature.length > tardigrades) {
+        localStorage.setItem("tardigrades", this.creatures.length.toString());
+        this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
+      }
     });
     const limit = 1000;
     if (displayedCreatures.length > limit) {
-      displayedCreatures.sort((a, b) => a.shown - b.shown);
+      displayedCreatures.sort((a, b2) => a.shown - b2.shown);
       displayedCreatures.length = limit;
     }
     gl.uniform2f(positionUniform, 0, 0);
@@ -27137,9 +28783,9 @@ class Game {
         originalVertices.length = 0;
         originalVertices.push(-spriteSize, -spriteSize, spriteSize, -spriteSize, spriteSize, spriteSize, -spriteSize, spriteSize);
         rotatedVertices.length = 0;
-        for (let i = 0;i < originalVertices.length; i += 2) {
-          const x2 = originalVertices[i];
-          const y2 = originalVertices[i + 1];
+        for (let i2 = 0;i2 < originalVertices.length; i2 += 2) {
+          const x2 = originalVertices[i2];
+          const y2 = originalVertices[i2 + 1];
           const rotatedX = x2 * cos - y2 * sin;
           const rotatedY = x2 * sin + y2 * cos;
           rotatedVertices.push(rotatedX, rotatedY);
@@ -27183,9 +28829,9 @@ class Game {
         spriteSize
       ];
       const rotatedVertices2 = [];
-      for (let i = 0;i < originalVertices2.length; i += 2) {
-        const x2 = originalVertices2[i];
-        const y2 = originalVertices2[i + 1];
+      for (let i2 = 0;i2 < originalVertices2.length; i2 += 2) {
+        const x2 = originalVertices2[i2];
+        const y2 = originalVertices2[i2 + 1];
         const rotatedX = x2 * cos - y2 * sin;
         const rotatedY = x2 * sin + y2 * cos;
         rotatedVertices2.push(rotatedX, rotatedY);
@@ -27273,30 +28919,30 @@ class Game {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     this.texture = texture;
-    document.addEventListener("wheel", (event) => {
-      this.zoomTarget += event.deltaY * -0.001;
+    document.addEventListener("wheel", (event2) => {
+      this.zoomTarget += event2.deltaY * -0.001;
       this.zoomTarget = Math.min(Math.max(0.1, this.zoomTarget), 4);
-      event.stopPropagation();
-      event.preventDefault();
+      event2.stopPropagation();
+      event2.preventDefault();
     }, { passive: false });
     let pointDown = null;
-    document.addEventListener("mousedown", (event) => {
-      pointDown = [event.clientX, event.clientY];
+    document.addEventListener("mousedown", (event2) => {
+      pointDown = [event2.clientX, event2.clientY];
     });
     document.addEventListener("mouseup", () => {
       pointDown = null;
     });
     const scrollMultiplier = 5;
-    document.addEventListener("mousemove", (event) => {
-      this.cursor[0] = ((event.clientX - this.canvas.offsetLeft) * 2 / this.canvas.width - 0.5) * 2 / this.zoom - this.globalOffset[0];
-      this.cursor[1] = -((event.clientY - this.canvas.offsetTop) * 2 / this.canvas.height - 0.5) * 2 / this.zoom - this.globalOffset[1];
+    document.addEventListener("mousemove", (event2) => {
+      this.cursor[0] = ((event2.clientX - this.canvas.offsetLeft) * 2 / this.canvas.width - 0.5) * 2 / this.zoom - this.globalOffset[0];
+      this.cursor[1] = -((event2.clientY - this.canvas.offsetTop) * 2 / this.canvas.height - 0.5) * 2 / this.zoom - this.globalOffset[1];
       if (pointDown && this.mode === "SELECT") {
-        this.offsetTarget[0] += (event.clientX - pointDown[0]) / this.canvas.width * scrollMultiplier / this.zoom;
-        this.offsetTarget[1] += -(event.clientY - pointDown[1]) / this.canvas.height * scrollMultiplier / this.zoom;
-        pointDown[0] = event.clientX;
-        pointDown[1] = event.clientY;
+        this.offsetTarget[0] += (event2.clientX - pointDown[0]) / this.canvas.width * scrollMultiplier / this.zoom;
+        this.offsetTarget[1] += -(event2.clientY - pointDown[1]) / this.canvas.height * scrollMultiplier / this.zoom;
+        pointDown[0] = event2.clientX;
+        pointDown[1] = event2.clientY;
       }
-      if (event.buttons === 1 && (this.mode === "DRAW" || this.mode === "ERASE")) {
+      if (event2.buttons === 1 && (this.mode === "DRAW" || this.mode === "ERASE")) {
         const x = this.cursor[0];
         const y = this.cursor[1];
         const cellX = Math.floor(x * 100);
@@ -27355,11 +29001,11 @@ class Game {
       rotation: (Math.random() - 0.5) * 0.5
     };
     creature.mov = [Math.random() - 0.5, Math.random() - 0.5];
-    for (let i = 0;i < MEMBER_SIZE.length; i++) {
-      creature.members.push(i === 0 ? member : {
+    for (let i2 = 0;i2 < MEMBER_SIZE.length; i2++) {
+      creature.members.push(i2 === 0 ? member : {
         creature,
-        x: creature.members[i - 1].x + (Math.random() - 0.5) * size,
-        y: creature.members[i - 1].y + (Math.random() - 0.5) * size,
+        x: creature.members[i2 - 1].x + (Math.random() - 0.5) * size,
+        y: creature.members[i2 - 1].y + (Math.random() - 0.5) * size,
         rotation: member.rotation * (Math.random() - 0.5) * 0.1
       });
     }
@@ -27379,7 +29025,7 @@ class Game {
     return symbol;
   }
   async prepareCreatures() {
-    for (let i = 0;i < TOTAL_CREATURES; i++) {
+    for (let i2 = 0;i2 < TOTAL_CREATURES; i2++) {
       const creature = this.createCreature();
       creature.lastSymbol = 5000;
     }

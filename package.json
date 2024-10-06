@@ -51,6 +51,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "medal-popup": "^1.0.20",
     "motor-loop": "^1.0.24"
   }
 }

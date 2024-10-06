@@ -3,6 +3,7 @@
 /// <reference lib="dom.iterable" />
 
 import { Motor, UpdatePayload } from "motor-loop"
+import { newgrounds } from "./newgrounds";
 
 const CELL_SIZE = 0.03;
 
@@ -515,6 +516,14 @@ export class Game {
   shaderProgram: WebGLProgram | null = null;
   lastDanger = 0;
 
+  timeout: Record<string, Timer> = {};
+  scoreAndDebounce(score: () => number, board: string) {
+    clearTimeout(this.timeout[board]);
+    this.timeout[board] = setTimeout(() => {
+      newgrounds.postScore(score(), board);
+    }, 10000);
+  }
+
   refresh(payload: UpdatePayload<Game>) {
     this.creatures.forEach(creature => creature.gravity());
     this.creatures.forEach(creature => creature.move(payload.time, this.map, this));
@@ -546,6 +555,7 @@ export class Game {
         if (joyIndex < 1) {
           this.progressJoy!.style.backgroundColor = Math.random() < .5 ? "red": "yellow";
           if (payload.time > 30000 && payload.time - this.lastDanger > 10000) {
+            newgrounds.postScore(totalScore, "Score"); 
             alert("Game Over! Your tardigrades are too sad to continue.");
             this.motor.stopLoop?.();
           }
@@ -564,9 +574,16 @@ export class Game {
         }        
       }
 
+      const year = Math.floor(age / 1000);
 
       this.labelScore!.textContent = `Score: ${totalScore}`;
-      this.labelAge!.textContent = `Year: ${Math.floor(age / 1000)}`;
+      this.labelAge!.textContent = `Year: ${year}`;
+      const savedYear = parseInt(localStorage.getItem("year") ?? "0");
+      if (year > savedYear && year > 5) {
+        localStorage.setItem("year", year.toString());
+        this.scoreAndDebounce(() => Math.floor(age / 1000), "Year");
+      }
+
     }
     
 
@@ -689,6 +706,11 @@ export class Game {
 
       displayedCreatures.push(creature);
       this.labelCount!.textContent = `Tardigrades: ${displayedCreatures.length}`;
+      const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+      if (this.creatures.length > 5 && this.createCreature.length > tardigrades) {
+        localStorage.setItem("tardigrades", this.creatures.length.toString());
+        this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
+      }
     });
     const limit = 1000;
     if (displayedCreatures.length > limit) {
