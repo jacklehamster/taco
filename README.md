@@ -1,28 +1,15 @@
 # bun-template
 
-[![npm version](https://badge.fury.io/js/bun-template.svg)](https://www.npmjs.com/package/bun-template)
+[![npm version](https://badge.fury.io/js/@dobuki%2Ftaco.svg)](https://www.npmjs.com/package/@dobuki/taco)
 
 Bun template for creating projects using bunjs
 
-![icon](https://jacklehamster.github.io/bun-template/icon.png)
+![icon](https://jacklehamster.github.io/taco/icon.png)
 
-## Install bun
+## Run Game
 
-<https://bun.sh/>
-
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
-
-## Commands
-
-- **start**: "bun run index.ts",
-- **bundle**: "bun run bundler/bundler.ts",
-
-## Run example
-
-[https://jacklehamster.github.io/bun-template/example/](https://jacklehamster.github.io/bun-template/example/)
+[https://jacklehamster.github.io/taco/example/](https://jacklehamster.github.io/taco/example/)
 
 ## Github Source
 
-[https://github.com/jacklehamster/bun-template/](https://github.com/jacklehamster/bun-template/)
+[https://github.com/jacklehamster/taco/](https://github.com/jacklehamster/taco/)
