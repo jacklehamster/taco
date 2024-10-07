@@ -2,7 +2,7 @@
   "name": "@dobuki/taco",
   "module": "src/index.tsx",
   "description": "Taco",
-  "version": "1.0.72",
+  "version": "1.0.73",
   "keywords": [
     "bun",
     "bunjs",
