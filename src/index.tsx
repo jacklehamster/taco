@@ -1026,6 +1026,16 @@ export class Game {
       width: HIGHWALL * 2,
       height: WALLSIZE,
     });
+
+    /** check top score */
+    const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+    if (tardigrades >= 12) {
+      newgrounds.unlockMedal("A dozen");
+    } else if (tardigrades >= 100) {
+      newgrounds.unlockMedal("100 Tardigrades");
+    }
+
+
   }
   zoom = 1;
   zoomTarget = 1;
