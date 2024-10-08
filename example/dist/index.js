@@ -29053,6 +29053,15 @@ class Game {
       width: HIGHWALL * 2,
       height: WALLSIZE
     });
+    const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
+    {
+      if (tardigrades >= 12) {
+        newgrounds.unlockMedal("A dozen");
+      } else if (tardigrades >= 100) {
+        newgrounds.unlockMedal("100 Tardigrades");
+      }
+      console.log("Max tardigrades reached", tardigrades);
+    }
   }
   zoom = 1;
   zoomTarget = 1;
@@ -29089,8 +29098,7 @@ class Game {
     }
     this.creatures.push(creature);
     this.labelCount.textContent = `Tardigrades: ${this.creatures.length}`;
-    const tardigrades = parseInt(localStorage.getItem("tardigrades") ?? "0");
-    if (this.creatures.length > 5 && this.creatures.length > tardigrades) {
+    if (this.creatures.length > 5) {
       localStorage.setItem("tardigrades", this.creatures.length.toString());
       this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
       if (this.creatures.length >= 12) {
