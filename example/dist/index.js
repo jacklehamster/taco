@@ -29057,7 +29057,8 @@ class Game {
     {
       if (tardigrades >= 12) {
         newgrounds.unlockMedal("A dozen");
-      } else if (tardigrades >= 100) {
+      }
+      if (tardigrades >= 100) {
         newgrounds.unlockMedal("100 Tardigrades");
       }
       console.log("Max tardigrades reached", tardigrades);
@@ -29103,10 +29104,12 @@ class Game {
       this.scoreAndDebounce(() => this.creatures.length, "Tardigrades");
       if (this.creatures.length >= 12) {
         newgrounds.unlockMedal("A dozen");
-      } else if (this.creatures.length >= 100) {
+      }
+      if (this.creatures.length >= 100) {
         newgrounds.unlockMedal("100 Tardigrades");
         this.sandboxCheckBox?.removeAttribute("disabled");
-      } else if (this.creatures.length >= 1000) {
+      }
+      if (this.creatures.length >= 1000) {
         newgrounds.unlockMedal("1000 Tardigrades");
       }
     }
